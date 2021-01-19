@@ -1,0 +1,18 @@
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="MIT"
+[[mods]] #mandatory
+modId="createtweaker" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="CreateTweaker" #mandatory
+updateJSONURL="https://updates.blamejared.com/get?n=createtweaker&gv=1.16.5" #optional
+authors="Jaredlll08" #optional
+description='''
+Adds CraftTweaker support to Create
+'''
+[[dependencies.CreateTweaker]] #optional
+   modId="forge" #mandatory
+   mandatory=true #mandatory
+   versionRange="[36,)" #mandatory
+   ordering="NONE"
+   side="BOTH"
