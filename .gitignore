@@ -118,3 +118,5 @@ run/
 !gradle-wrapper.jar
 
 secrets.json
+
+changelog.md
