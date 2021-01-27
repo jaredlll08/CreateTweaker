@@ -29,10 +29,22 @@ public class MixingManager implements IRecipeManager {
     
     @ZenCodeType.Method
     public void addRecipe(String name, String heat, IItemStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs) {
-        
+    
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-//        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
+        ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer).getFactory(), resourceLocation);
+        builder.output(output.getInternal());
+        builder.withItemIngredients(Arrays.stream(itemInputs).map(IIngredient::asVanillaIngredient).toArray(Ingredient[]::new));
+        if(fluidInputs != null) {
+            builder.withFluidIngredients(Arrays.stream(fluidInputs).map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal())).toArray(FluidIngredient[]::new));
+        }
+        builder.requiresHeat(Arrays.stream(HeatCondition.values())
+                .filter(heatEnum -> heat.equalsIgnoreCase(heatEnum.name()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid heat: \"" + heat + "\" Provided! Valid options are: " + Arrays.toString(HeatCondition.values()))));
+    
+        MixingRecipe recipe = builder.build();
+        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     
     @ZenCodeType.Method
