@@ -20,14 +20,15 @@ public class SandPaperPolishingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack output, IIngredient input) {
+    public void addRecipe(String name, IItemStack output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<SandPaperPolishingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<SandPaperPolishingRecipe>) AllRecipeTypes.SANDPAPER_POLISHING.serializer).getFactory(), resourceLocation);
         builder.output(output.getInternal());
         builder.require(input.asVanillaIngredient());
-        
+    
+        builder.duration(duration);
         SandPaperPolishingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         

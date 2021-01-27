@@ -20,14 +20,15 @@ public class CuttingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack output, IIngredient input) {
+    public void addRecipe(String name, IItemStack output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<CuttingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CuttingRecipe>) AllRecipeTypes.CUTTING.serializer).getFactory(), resourceLocation);
         builder.output(output.getInternal());
         builder.require(input.asVanillaIngredient());
-        
+    
+        builder.duration(duration);
         CuttingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         

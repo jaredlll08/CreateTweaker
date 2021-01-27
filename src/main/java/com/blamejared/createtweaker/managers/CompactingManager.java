@@ -27,7 +27,7 @@ public class CompactingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IItemStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs) {
+    public void addRecipe(String name, String heat, IItemStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -41,13 +41,14 @@ public class CompactingManager implements IRecipeManager {
                 .filter(heatEnum -> heat.equalsIgnoreCase(heatEnum.name()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Invalid heat: \"" + heat + "\" Provided!")));
-        
+    
+        builder.duration(duration);
         CompactingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IFluidStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs) {
+    public void addRecipe(String name, String heat, IFluidStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -61,7 +62,8 @@ public class CompactingManager implements IRecipeManager {
                 .filter(heatEnum -> heat.equalsIgnoreCase(heatEnum.name()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Invalid heat: \"" + heat + "\" Provided! Valid options are: " + Arrays.toString(HeatCondition.values()))));
-        
+    
+        builder.duration(duration);
         CompactingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }

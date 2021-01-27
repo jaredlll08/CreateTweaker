@@ -24,7 +24,7 @@ public class SplashingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredient input) {
+    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -33,6 +33,7 @@ public class SplashingManager implements IRecipeManager {
         
         builder.require(input.asVanillaIngredient());
     
+        builder.duration(duration);
         SplashingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         

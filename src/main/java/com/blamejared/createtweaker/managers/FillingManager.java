@@ -22,14 +22,15 @@ public class FillingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack output, IIngredient inputContainer, IFluidStack inputFluid) {
+    public void addRecipe(String name, IItemStack output, IIngredient inputContainer, IFluidStack inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<FillingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<FillingRecipe>) AllRecipeTypes.FILLING.serializer).getFactory(), resourceLocation);
         builder.output(output.getInternal());
         builder.require(inputContainer.asVanillaIngredient()).require(FluidIngredient.fromFluidStack(inputFluid.getInternal()));
-        
+    
+        builder.duration(duration);
         FillingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         

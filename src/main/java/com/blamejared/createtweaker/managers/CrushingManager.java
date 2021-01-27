@@ -23,7 +23,7 @@ public class CrushingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredient input) {
+    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -31,7 +31,8 @@ public class CrushingManager implements IRecipeManager {
         builder.withItemOutputs(Arrays.stream(output).map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack().getInternal(), (float) mcWeightedItemStack.getWeight())).toArray(ProcessingOutput[]::new));
         
         builder.require(input.asVanillaIngredient());
-        
+    
+        builder.duration(duration);
         CrushingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         

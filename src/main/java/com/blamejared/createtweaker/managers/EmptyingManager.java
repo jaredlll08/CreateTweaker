@@ -23,7 +23,7 @@ public class EmptyingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack outputItem, IFluidStack outputFluid, IIngredient inputContainer) {
+    public void addRecipe(String name, IItemStack outputItem, IFluidStack outputFluid, IIngredient inputContainer, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -31,6 +31,7 @@ public class EmptyingManager implements IRecipeManager {
         builder.output(outputItem.getInternal()).output(outputFluid.getInternal());
         builder.require(inputContainer.asVanillaIngredient());
     
+        builder.duration(duration);
         EmptyingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
         
