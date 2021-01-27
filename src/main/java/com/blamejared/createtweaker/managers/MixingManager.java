@@ -35,7 +35,7 @@ public class MixingManager implements IRecipeManager {
         ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer).getFactory(), resourceLocation);
         builder.output(output.getInternal());
         builder.withItemIngredients(Arrays.stream(itemInputs).map(IIngredient::asVanillaIngredient).toArray(Ingredient[]::new));
-        if(fluidInputs != null) {
+        if(fluidInputs != null && fluidInputs.length != 0) {
             builder.withFluidIngredients(Arrays.stream(fluidInputs).map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal())).toArray(FluidIngredient[]::new));
         }
         builder.requiresHeat(Arrays.stream(HeatCondition.values())
