@@ -25,24 +25,26 @@ public class MechanicalCrafterManager implements IRecipeManager {
     public void addRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
         
         name = fixRecipeName(name);
+        int width = ingredients[0].length;
+        for(IIngredient[] value : ingredients) {
+            if(value.length != width) {
+                throw new IllegalArgumentException("Create Mechanical Crafter IIngredient array needs to have the same length for all entries (the arrays need to contain the exact same amount of ingredients, use <item:minecraft:air> to pad the arrays out!)");
+            }
+        }
+        
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         NonNullList<Ingredient> ingredientList = NonNullList.create();
-    
+        
         for(IIngredient[] iIngredients : ingredients) {
             for(IIngredient iIngredient : iIngredients) {
                 ingredientList.add(iIngredient.asVanillaIngredient());
             }
         }
         
-        int tempWidth = ingredients[0].length;
-    
-        for(IIngredient[] ingredient : ingredients) {
-            tempWidth = Math.max(ingredient.length, tempWidth);
-        }
-    
-        int width = tempWidth;
-        NonNullList<Ingredient> list = NonNullList.from(Ingredient.EMPTY, ingredientList.toArray(new Ingredient[0]));
-        MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output.getInternal());
+        NonNullList<Ingredient> list = NonNullList.from(Ingredient.EMPTY, ingredientList
+                .toArray(new Ingredient[0]));
+        MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output
+                .getInternal());
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     
