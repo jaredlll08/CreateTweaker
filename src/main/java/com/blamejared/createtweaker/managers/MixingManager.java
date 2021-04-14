@@ -4,6 +4,7 @@ import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.item.IIngredient;
+import com.blamejared.crafttweaker.api.item.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
@@ -32,19 +33,26 @@ public class MixingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IItemStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, String heat, IItemStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer)
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
-        builder.withItemIngredients(Arrays.stream(itemInputs)
-                .map(IIngredient::asVanillaIngredient)
-                .toArray(Ingredient[]::new));
+        
+        List<Ingredient> ingredients = new ArrayList<>();
+        Arrays.stream(itemInputs).forEach(iIngredientWithAmount -> {
+            for(int i = 0; i < iIngredientWithAmount.getAmount(); i++) {
+                ingredients.add(iIngredientWithAmount.getIngredient()
+                        .asVanillaIngredient());
+            }
+        });
+        builder.withItemIngredients(ingredients.toArray(new Ingredient[0]));
         if(fluidInputs != null && fluidInputs.length != 0) {
             builder.withFluidIngredients(Arrays.stream(fluidInputs)
-                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal()))
+                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack
+                            .getInternal()))
                     .toArray(FluidIngredient[]::new));
         }
         builder.requiresHeat(Arrays.stream(HeatCondition.values())
@@ -59,19 +67,25 @@ public class MixingManager implements IRecipeManager {
     }
     
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IFluidStack output, IIngredient[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, String heat, IFluidStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer)
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
-        builder.withItemIngredients(Arrays.stream(itemInputs)
-                .map(IIngredient::asVanillaIngredient)
-                .toArray(Ingredient[]::new));
+        List<Ingredient> ingredients = new ArrayList<>();
+        Arrays.stream(itemInputs).forEach(iIngredientWithAmount -> {
+            for(int i = 0; i < iIngredientWithAmount.getAmount(); i++) {
+                ingredients.add(iIngredientWithAmount.getIngredient()
+                        .asVanillaIngredient());
+            }
+        });
+        builder.withItemIngredients(ingredients.toArray(new Ingredient[0]));
         if(fluidInputs != null) {
             builder.withFluidIngredients(Arrays.stream(fluidInputs)
-                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal()))
+                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack
+                            .getInternal()))
                     .toArray(FluidIngredient[]::new));
         }
         builder.requiresHeat(Arrays.stream(HeatCondition.values())
@@ -93,8 +107,10 @@ public class MixingManager implements IRecipeManager {
             public void apply() {
                 
                 List<ResourceLocation> toRemove = new ArrayList<>();
-                for(ResourceLocation location : getManager().getRecipes().keySet()) {
-                    IRecipe<?> iRecipe = getManager().getRecipes().get(location);
+                for(ResourceLocation location : getManager().getRecipes()
+                        .keySet()) {
+                    IRecipe<?> iRecipe = getManager().getRecipes()
+                            .get(location);
                     if(iRecipe instanceof MixingRecipe) {
                         MixingRecipe recipe = (MixingRecipe) iRecipe;
                         if(recipe.getFluidResults().isEmpty()) {
