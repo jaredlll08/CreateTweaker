@@ -3,6 +3,7 @@ package com.blamejared.createtweaker.managers;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.item.IIngredient;
+import com.blamejared.crafttweaker.api.item.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.blamejared.crafttweaker.impl.item.MCWeightedItemStack;
@@ -13,10 +14,13 @@ import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import org.openzen.zencode.java.ZenCodeType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @ZenRegister
 @ZenCodeType.Name("mods.create.PressingManager")
@@ -24,14 +28,19 @@ public class PressingManager implements IRecipeManager {
     
     
     @ZenCodeType.Method
-    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, MCWeightedItemStack[] output, IIngredientWithAmount input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<PressingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<PressingRecipe>) AllRecipeTypes.PRESSING.serializer).getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(output).map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack().getInternal(), (float) mcWeightedItemStack.getWeight())).toArray(ProcessingOutput[]::new));
-        
-        builder.require(input.asVanillaIngredient());
+    
+        List<Ingredient> ingredients = new ArrayList<>();
+            for(int i = 0; i < input.getAmount(); i++) {
+                ingredients.add(input.getIngredient()
+                        .asVanillaIngredient());
+            }
+        builder.withItemIngredients(ingredients.toArray(new Ingredient[0]));
     
         builder.duration(duration);
         PressingRecipe recipe = builder.build();
