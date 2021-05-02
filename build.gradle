@@ -150,7 +150,14 @@ curseforge {
         releaseType = 'release'
         changelog = file("changelog.md")
         changelogType = 'markdown'
+        mainArtifact(jar) {
+            relations {
+                requiredDependency "crafttweaker"
+                requiredDependency "create"
+            }
+        }
     }
+
 }
 
 task updateVersionTracker {
