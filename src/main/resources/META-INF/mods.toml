@@ -10,9 +10,17 @@ authors="Jaredlll08" #optional
 description='''
 Adds CraftTweaker support to Create
 '''
-[[dependencies.CreateTweaker]] #optional
-   modId="forge" #mandatory
-   mandatory=true #mandatory
-   versionRange="[36,)" #mandatory
-   ordering="NONE"
-   side="BOTH"
+
+# Create doesn't seem to publish their version correctly, so can't use this here
+#[[dependencies.createtweaker]]
+#modId = "create"
+#mandatory = true
+#versionRange = "???"
+#ordering = "NONE"
+#side = "BOTH"
+[[dependencies.createtweaker]]
+modId = "crafttweaker"
+mandatory = true
+versionRange = "[7.1,)"
+ordering = "NONE"
+side = "BOTH"
