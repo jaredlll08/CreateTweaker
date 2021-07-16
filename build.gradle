@@ -23,11 +23,12 @@ archivesBaseName = 'CreateTweaker'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'snapshot', version: '20200920-mixed-1.16.3'
 
     runs {
         client {
             workingDirectory project.file('run')
+            jvmArgs "-Dmixin.env.disableRefMap=true"
 
             mods {
                 createtweaker {
@@ -38,6 +39,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+            jvmArgs "-Dmixin.env.disableRefMap=true"
 
             mods {
                 createtweaker {
@@ -48,6 +50,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
+            jvmArgs "-Dmixin.env.disableRefMap=true"
 
             args '--mod', 'createtweaker', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
@@ -98,9 +101,11 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.0.1'
-    implementation fg.deobf("curse.maven:create-328085:3167531")
+    implementation fg.deobf("curse.maven:create-328085:3260165")
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.0.203")
+    compile fg.deobf("com.blamejared.contenttweaker:ContentTweaker-1.16:1.0.0.develop.11")
     compile fg.deobf("mezz.jei:jei-1.16.4:7.6.1.65")
+    runtimeOnly fg.deobf("curse.maven:openloader-354339:3060693")
 }
 
 jar {
