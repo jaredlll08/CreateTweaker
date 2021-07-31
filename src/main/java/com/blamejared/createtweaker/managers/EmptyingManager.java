@@ -5,21 +5,16 @@ import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.item.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRecipeBase;
+import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.contraptions.components.mixer.MixingRecipe;
-import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
 import com.simibubi.create.content.contraptions.processing.EmptyingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.fluids.FluidStack;
 import org.openzen.zencode.java.ZenCodeType;
 
 import java.util.ArrayList;
@@ -27,18 +22,18 @@ import java.util.List;
 
 @ZenRegister
 @ZenCodeType.Name("mods.create.EmptyingManager")
-public class EmptyingManager implements IRecipeManager {
-    
+public class EmptyingManager implements IProcessingRecipeManager<EmptyingRecipe> {
     
     @ZenCodeType.Method
     public void addRecipe(String name, IItemStack outputItem, IFluidStack outputFluid, IIngredient inputContainer, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<EmptyingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<EmptyingRecipe>) AllRecipeTypes.EMPTYING.serializer).getFactory(), resourceLocation);
+        ProcessingRecipeBuilder<EmptyingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<EmptyingRecipe>) AllRecipeTypes.EMPTYING.serializer)
+                .getFactory(), resourceLocation);
         builder.output(outputItem.getInternal()).output(outputFluid.getInternal());
         builder.require(inputContainer.asVanillaIngredient());
-    
+        
         builder.duration(duration);
         EmptyingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
@@ -79,9 +74,9 @@ public class EmptyingManager implements IRecipeManager {
     }
     
     @Override
-    public IRecipeType<EmptyingRecipe> getRecipeType() {
+    public AllRecipeTypes getCreateRecipeType() {
         
-        return AllRecipeTypes.EMPTYING.getType();
+        return AllRecipeTypes.EMPTYING;
     }
     
 }

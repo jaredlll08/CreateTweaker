@@ -3,12 +3,11 @@ package com.blamejared.createtweaker.managers;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
-import com.blamejared.crafttweaker.api.item.IIngredient;
 import com.blamejared.crafttweaker.api.item.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.item.IItemStack;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRecipeBase;
+import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.MixingRecipe;
 import com.simibubi.create.content.contraptions.processing.HeatCondition;
@@ -16,7 +15,6 @@ import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuild
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -29,8 +27,7 @@ import java.util.List;
 
 @ZenRegister
 @ZenCodeType.Name("mods.create.MixingManager")
-public class MixingManager implements IRecipeManager {
-    
+public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
     
     @ZenCodeType.Method
     public void addRecipe(String name, String heat, IItemStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
@@ -136,9 +133,9 @@ public class MixingManager implements IRecipeManager {
     }
     
     @Override
-    public IRecipeType<MixingRecipe> getRecipeType() {
+    public AllRecipeTypes getCreateRecipeType() {
         
-        return AllRecipeTypes.MIXING.getType();
+        return AllRecipeTypes.MIXING;
     }
     
 }

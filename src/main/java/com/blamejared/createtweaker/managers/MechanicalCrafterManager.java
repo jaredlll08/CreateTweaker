@@ -14,9 +14,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import org.openzen.zencode.java.ZenCodeType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ZenRegister
 @ZenCodeType.Name("mods.create.MechanicalCrafterManager")
 public class MechanicalCrafterManager implements IRecipeManager {

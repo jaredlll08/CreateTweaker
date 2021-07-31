@@ -29,6 +29,9 @@ minecraft {
         client {
             workingDirectory project.file('run')
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 createtweaker {
                     source sourceSets.main
@@ -97,9 +100,10 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.0.1'
-    implementation fg.deobf("curse.maven:create-328085:3167531")
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.0.203")
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
+    implementation fg.deobf("curse.maven:create-328085:3386319")
+    implementation fg.deobf("curse.maven:flywheel-486392:3384004")
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.0.346")
     compile fg.deobf("mezz.jei:jei-1.16.4:7.6.1.65")
 }
 
