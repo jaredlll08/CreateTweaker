@@ -29,7 +29,7 @@ public class EmptyingManager implements IProcessingRecipeManager<EmptyingRecipe>
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<EmptyingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<EmptyingRecipe>) AllRecipeTypes.EMPTYING.serializer)
+        ProcessingRecipeBuilder<EmptyingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<EmptyingRecipe>) AllRecipeTypes.EMPTYING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(outputItem.getInternal()).output(outputFluid.getInternal());
         builder.require(inputContainer.asVanillaIngredient());

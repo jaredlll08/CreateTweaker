@@ -34,7 +34,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<CompactingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CompactingRecipe>) AllRecipeTypes.COMPACTING.serializer)
+        ProcessingRecipeBuilder<CompactingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CompactingRecipe>) AllRecipeTypes.COMPACTING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
         
@@ -66,7 +66,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<CompactingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CompactingRecipe>) AllRecipeTypes.COMPACTING.serializer)
+        ProcessingRecipeBuilder<CompactingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CompactingRecipe>) AllRecipeTypes.COMPACTING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
         List<Ingredient> ingredients = new ArrayList<>();

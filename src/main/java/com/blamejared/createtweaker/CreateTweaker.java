@@ -6,7 +6,6 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.tags.ITag;
 import net.minecraftforge.fml.common.Mod;
 
-
 @Mod("createtweaker")
 public class CreateTweaker {
     
@@ -15,7 +14,7 @@ public class CreateTweaker {
     }
     
     public static FluidIngredient mapFluidIngredients(CTFluidIngredient ingredient) {
-        
+    
         return ingredient
                 .mapTo(FluidIngredient::fromFluidStack, (fluidITag, integer) -> FluidIngredient
                         .fromTag((ITag.INamedTag<Fluid>) fluidITag, integer), stream -> {

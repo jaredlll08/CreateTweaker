@@ -34,7 +34,7 @@ public class PressingManager implements IProcessingRecipeManager<PressingRecipe>
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<PressingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<PressingRecipe>) AllRecipeTypes.PRESSING.serializer)
+        ProcessingRecipeBuilder<PressingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<PressingRecipe>) AllRecipeTypes.PRESSING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(output)
                 .map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack()

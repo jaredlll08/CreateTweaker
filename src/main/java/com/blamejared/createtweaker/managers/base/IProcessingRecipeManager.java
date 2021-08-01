@@ -21,7 +21,7 @@ public interface IProcessingRecipeManager<T extends ProcessingRecipe<?>> extends
     
     default ProcessingRecipeSerializer<T> getSerializer() {
         
-        return ((ProcessingRecipeSerializer<T>) getCreateRecipeType().serializer);
+        return getCreateRecipeType().getSerializer();
     }
     
     @ZenCodeType.Method

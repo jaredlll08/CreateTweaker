@@ -11,13 +11,12 @@ description='''
 Adds CraftTweaker support to Create
 '''
 
-# Create doesn't seem to publish their version correctly, so can't use this here
-#[[dependencies.createtweaker]]
-#modId = "create"
-#mandatory = true
-#versionRange = "???"
-#ordering = "NONE"
-#side = "BOTH"
+[[dependencies.createtweaker]]
+modId = "create"
+mandatory = true
+versionRange = "[v0.3.2c for 1.16.5,v0.3.2d for 1.16.5)"
+ordering = "NONE"
+side = "BOTH"
 [[dependencies.createtweaker]]
 modId = "crafttweaker"
 mandatory = true

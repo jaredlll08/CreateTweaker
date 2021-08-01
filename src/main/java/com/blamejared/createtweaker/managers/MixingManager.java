@@ -34,7 +34,7 @@ public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer)
+        ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
         
@@ -68,7 +68,7 @@ public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.serializer)
+        ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
         List<Ingredient> ingredients = new ArrayList<>();

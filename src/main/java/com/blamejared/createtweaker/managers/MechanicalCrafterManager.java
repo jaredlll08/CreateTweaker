@@ -38,7 +38,7 @@ public class MechanicalCrafterManager implements IRecipeManager {
             }
         }
         
-        NonNullList<Ingredient> list = NonNullList.from(Ingredient.EMPTY, ingredientList
+        NonNullList<Ingredient> list = NonNullList.of(Ingredient.EMPTY, ingredientList
                 .toArray(new Ingredient[0]));
         MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output
                 .getInternal());

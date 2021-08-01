@@ -10,6 +10,7 @@ import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRe
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import org.openzen.zencode.java.ZenCodeType;
 
@@ -32,44 +33,38 @@ public class SequencedAssemblyManager implements IRecipeManager {
         ResourceLocation recipeId = new ResourceLocation("crafttweaker", name);
         SequencedAssemblyRecipeBuilder t = new SequencedAssemblyRecipeBuilder(recipeId);
         recipeBuilder.accept(t);
-        t.build(iFinishedRecipe -> {
-            try {
-                SequencedAssemblyRecipe recipe = getSerializer().read(new ResourceLocation("crafttweaker", iFinishedRecipe
-                        .getID()
-                        .getPath()), iFinishedRecipe.getRecipeJson());
-                if(recipe.getSequence().isEmpty()) {
-                    throw new IllegalArgumentException("Cannot add Sequenced Assembly Recipe with no steps!");
-                }
-                
-                CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
-            } catch(JsonParseException e) {
-                throw new RuntimeException("Error while adding Sequenced Assembly Recipe! This is most likely caused by using in unsupported recipe type in a step!", e);
-            } catch(Exception e) {
-                throw new RuntimeException("Error while adding Sequenced Assembly Recipe! Make sure that `transitionTo`, `outputs` and `inputs` is set!", e);
-            }
-        });
+        SequencedAssemblyRecipe recipe = t.build();
+        precheck(recipe);
+        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
     }
     
     
     @ZenCodeType.Method
     public void addRecipe(SequencedAssemblyRecipeBuilder builder) {
         
-        builder.build(iFinishedRecipe -> {
-            try {
-                SequencedAssemblyRecipe recipe = getSerializer().read(new ResourceLocation("crafttweaker", iFinishedRecipe
-                        .getID()
-                        .getPath()), iFinishedRecipe.getRecipeJson());
-                if(recipe.getSequence().isEmpty()) {
-                    throw new IllegalArgumentException("Cannot add Sequenced Assembly Recipe with no steps!");
-                }
-                
-                CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
-            } catch(JsonParseException e) {
-                throw new RuntimeException("Error while adding Sequenced Assembly Recipe! This is most likely caused by using in unsupported recipe type in a step!", e);
-            } catch(Exception e) {
-                throw new RuntimeException("Error while adding Sequenced Assembly Recipe! Make sure that `transitionTo`, `outputs` and `inputs` is set!", e);
+        SequencedAssemblyRecipe recipe = builder.build();
+        precheck(recipe);
+        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
+    }
+    
+    private void precheck(SequencedAssemblyRecipe recipe) {
+        
+        if(recipe.getTransitionalItem().isEmpty()) {
+            throw new IllegalArgumentException("Error while adding Sequenced Assembly Recipe! The `transitionTo` item is not provided or is air! transitionTo: " + recipe.getTransitionalItem());
+        }
+        try {
+            if(recipe.getResultItem().isEmpty()) {
+                throw new IllegalArgumentException("Error while adding Sequenced Assembly Recipe! The `output` is not provided or is air! output: " + recipe.getTransitionalItem());
             }
-        });
+        } catch(IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("Error while adding Sequenced Assembly Recipe! The `output` is not provided or is air! output: " + recipe.getTransitionalItem());
+        }
+        if(recipe.getIngredient() == null) {
+            throw new IllegalArgumentException("Error while adding Sequenced Assembly Recipe! The `inputs` is not provided! inputs: " + recipe.getIngredient());
+        }
+        if(recipe.getSequence().isEmpty()) {
+            throw new IllegalArgumentException("Error while adding Sequenced Assembly Recipe! No Steps have been provided!");
+        }
     }
     
     @Override
@@ -81,7 +76,7 @@ public class SequencedAssemblyManager implements IRecipeManager {
     
     public SequencedAssemblyRecipeSerializer getSerializer() {
         
-        return (SequencedAssemblyRecipeSerializer) AllRecipeTypes.SEQUENCED_ASSEMBLY.serializer;
+        return AllRecipeTypes.SEQUENCED_ASSEMBLY.getSerializer();
     }
     
 }

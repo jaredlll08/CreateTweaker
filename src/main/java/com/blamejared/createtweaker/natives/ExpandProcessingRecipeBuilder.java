@@ -100,7 +100,7 @@ public class ExpandProcessingRecipeBuilder {
     
     @ZenCodeType.Method
     public static ProcessingRecipeBuilder output(ProcessingRecipeBuilder internal, MCWeightedItemStack item) {
-        // TODO confirm this is fine
+        
         return internal.output((float) item.getWeight(), item.getItemStack()
                 .getInternal());
     }

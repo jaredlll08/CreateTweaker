@@ -25,7 +25,7 @@ public class CrushingManager implements IProcessingRecipeManager<CrushingRecipe>
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<CrushingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CrushingRecipe>) AllRecipeTypes.CRUSHING.serializer)
+        ProcessingRecipeBuilder<CrushingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CrushingRecipe>) AllRecipeTypes.CRUSHING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(output)
                 .map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack()

@@ -30,7 +30,7 @@ public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<FillingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<FillingRecipe>) AllRecipeTypes.FILLING.serializer)
+        ProcessingRecipeBuilder<FillingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<FillingRecipe>) AllRecipeTypes.FILLING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.output(output.getInternal());
         builder.require(inputContainer.asVanillaIngredient())

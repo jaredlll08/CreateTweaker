@@ -23,7 +23,7 @@ archivesBaseName = 'CreateTweaker'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'official', version: '1.16.5'
 
     runs {
         client {
@@ -100,9 +100,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
-    implementation fg.deobf("curse.maven:create-328085:3386319")
-    implementation fg.deobf("curse.maven:flywheel-486392:3384004")
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
+    implementation fg.deobf("curse.maven:create-328085:3406857")
+    implementation fg.deobf("curse.maven:flywheel-486392:3406855")
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.0.346")
     compile fg.deobf("mezz.jei:jei-1.16.4:7.6.1.65")
 }

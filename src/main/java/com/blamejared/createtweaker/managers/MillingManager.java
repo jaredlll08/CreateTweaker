@@ -25,7 +25,7 @@ public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<MillingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MillingRecipe>) AllRecipeTypes.MILLING.serializer)
+        ProcessingRecipeBuilder<MillingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MillingRecipe>) AllRecipeTypes.MILLING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(output)
                 .map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack()

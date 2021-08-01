@@ -25,7 +25,7 @@ public class SplashingManager implements IProcessingRecipeManager<SplashingRecip
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<SplashingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<SplashingRecipe>) AllRecipeTypes.SPLASHING.serializer)
+        ProcessingRecipeBuilder<SplashingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<SplashingRecipe>) AllRecipeTypes.SPLASHING.getSerializer())
                 .getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(output)
                 .map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getItemStack()
