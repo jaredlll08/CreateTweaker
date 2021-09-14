@@ -20,6 +20,18 @@ public class MechanicalCrafterManager implements IRecipeManager {
     
     @ZenCodeType.Method
     public void addRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
+    
+        addInternal(name, output, ingredients, false);
+    }
+    
+    @ZenCodeType.Method
+    public void addMirroredRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
+        
+       addInternal(name, output, ingredients, true);
+    }
+    
+    
+    private void addInternal(String name, IItemStack output, IIngredient[][] ingredients, boolean mirrored) {
         
         name = fixRecipeName(name);
         int width = ingredients[0].length;
@@ -41,7 +53,7 @@ public class MechanicalCrafterManager implements IRecipeManager {
         NonNullList<Ingredient> list = NonNullList.of(Ingredient.EMPTY, ingredientList
                 .toArray(new Ingredient[0]));
         MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output
-                .getInternal());
+                .getInternal(), false);
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     

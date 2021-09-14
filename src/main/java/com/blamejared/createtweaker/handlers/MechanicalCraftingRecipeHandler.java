@@ -49,7 +49,7 @@ public class MechanicalCraftingRecipeHandler implements IRecipeHandler<Mechanica
                 Ingredient.class,
                 recipe,
                 rules,
-                newIngredients -> id -> new MechanicalCraftingRecipe(id, recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), newIngredients, recipe.getResultItem())
+                newIngredients -> id -> new MechanicalCraftingRecipe(id, recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), newIngredients, recipe.getResultItem(), recipe.acceptsMirrored())
         );
         
     }
