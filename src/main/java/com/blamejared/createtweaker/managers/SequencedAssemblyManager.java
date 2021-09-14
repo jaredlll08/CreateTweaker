@@ -4,13 +4,11 @@ import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.managers.IRecipeManager;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
-import com.google.gson.JsonParseException;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipe;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import org.openzen.zencode.java.ZenCodeType;
 
@@ -31,20 +29,29 @@ public class SequencedAssemblyManager implements IRecipeManager {
         
         name = fixRecipeName(name);
         ResourceLocation recipeId = new ResourceLocation("crafttweaker", name);
-        SequencedAssemblyRecipeBuilder t = new SequencedAssemblyRecipeBuilder(recipeId);
-        recipeBuilder.accept(t);
-        SequencedAssemblyRecipe recipe = t.build();
-        precheck(recipe);
-        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
+        SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(recipeId);
+        recipeBuilder.accept(builder);
+        addInternal(builder);
     }
     
     
     @ZenCodeType.Method
     public void addRecipe(SequencedAssemblyRecipeBuilder builder) {
         
+        addInternal(builder);
+    }
+    
+    private void addInternal(SequencedAssemblyRecipeBuilder builder) {
+        
         SequencedAssemblyRecipe recipe = builder.build();
         precheck(recipe);
-        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe));
+        builder.build(iFinishedRecipe -> {
+            SequencedAssemblyRecipe seqRecipe = (SequencedAssemblyRecipe) iFinishedRecipe.getType()
+                    .fromJson(new ResourceLocation("crafttweaker", iFinishedRecipe.getId()
+                            .getPath()), iFinishedRecipe.serializeRecipe());
+            
+            CraftTweakerAPI.apply(new ActionAddRecipe(this, seqRecipe));
+        });
     }
     
     private void precheck(SequencedAssemblyRecipe recipe) {
