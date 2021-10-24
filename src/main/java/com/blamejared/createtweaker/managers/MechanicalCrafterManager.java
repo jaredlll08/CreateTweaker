@@ -26,8 +26,7 @@ public class MechanicalCrafterManager implements IRecipeManager {
     
     @ZenCodeType.Method
     public void addMirroredRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
-        throw new RuntimeException("This method hasn't been added to Create yet.");
-//       addInternal(name, output, ingredients, true);
+       addInternal(name, output, ingredients, true);
     }
     
     
@@ -53,7 +52,7 @@ public class MechanicalCrafterManager implements IRecipeManager {
         NonNullList<Ingredient> list = NonNullList.of(Ingredient.EMPTY, ingredientList
                 .toArray(new Ingredient[0]));
         MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output
-                .getInternal());
+                .getInternal(), mirrored);
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     
