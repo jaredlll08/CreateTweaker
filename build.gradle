@@ -104,8 +104,8 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel:1.16-0.2.4.50")
-    implementation fg.deobf("com.simibubi.create:Create:mc1.16.5_v0.3.2f+464")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel:1.16-0.2.4.52")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.16.5_v0.3.2g+480")
     compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.0.346")
     compile fg.deobf("mezz.jei:jei-1.16.4:7.6.1.65")
 }
