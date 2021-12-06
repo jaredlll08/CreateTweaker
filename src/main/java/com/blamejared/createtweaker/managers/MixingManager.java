@@ -4,9 +4,9 @@ import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.item.IIngredientWithAmount;
-import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionRecipeBase;
+import com.blamejared.crafttweaker.impl.item.MCWeightedItemStack;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.MixingRecipe;
@@ -30,13 +30,17 @@ import java.util.List;
 public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
     
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IItemStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, String heat, MCWeightedItemStack[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.getSerializer())
                 .getFactory(), resourceLocation);
-        builder.output(output.getInternal());
+        for(MCWeightedItemStack output : outputs) {
+            
+            builder.output((float) output.getWeight(), output.getItemStack()
+                    .getInternal());
+        }
         
         List<Ingredient> ingredients = new ArrayList<>();
         Arrays.stream(itemInputs).forEach(iIngredientWithAmount -> {
@@ -63,14 +67,25 @@ public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
     }
     
+    
     @ZenCodeType.Method
-    public void addRecipe(String name, String heat, IFluidStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, String heat, MCWeightedItemStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+        
+        addRecipe(name, heat, new MCWeightedItemStack[] {output}, itemInputs, fluidInputs, duration);
+    }
+    
+    @ZenCodeType.Method
+    public void addRecipe(String name, String heat, IFluidStack[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.getSerializer())
                 .getFactory(), resourceLocation);
-        builder.output(output.getInternal());
+        
+        for(IFluidStack output : outputs) {
+            builder.output(output.getInternal());
+        }
+        
         List<Ingredient> ingredients = new ArrayList<>();
         Arrays.stream(itemInputs).forEach(iIngredientWithAmount -> {
             for(int i = 0; i < iIngredientWithAmount.getAmount(); i++) {
@@ -94,6 +109,12 @@ public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
         builder.duration(duration);
         MixingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
+    }
+    
+    @ZenCodeType.Method
+    public void addRecipe(String name, String heat, IFluidStack output, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+        
+        addRecipe(name, heat, new IFluidStack[] {output}, itemInputs, fluidInputs, duration);
     }
     
     @ZenCodeType.Method

@@ -3,8 +3,8 @@ package com.blamejared.createtweaker.managers;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotations.ZenRegister;
 import com.blamejared.crafttweaker.api.item.IIngredient;
-import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
+import com.blamejared.crafttweaker.impl.item.MCWeightedItemStack;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
@@ -18,13 +18,14 @@ import org.openzen.zencode.java.ZenCodeType;
 public class SandPaperPolishingManager implements IProcessingRecipeManager<SandPaperPolishingRecipe> {
     
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, MCWeightedItemStack output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<SandPaperPolishingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<SandPaperPolishingRecipe>) AllRecipeTypes.SANDPAPER_POLISHING.getSerializer())
                 .getFactory(), resourceLocation);
-        builder.output(output.getInternal());
+        builder.output((float) output.getWeight(), output.getItemStack()
+                .getInternal());
         builder.require(input.asVanillaIngredient());
         
         builder.duration(duration);
