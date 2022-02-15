@@ -70,7 +70,7 @@ modTemplate {
 
     changelog {
         enabled true
-        firstCommit "567dc7c69260c3316651f718e2a182ab2ca836f9"
+        firstCommit "09445356925419c0111b0553a70f272a601f8bd5"
         repo "https://github.com/jaredlll08/CreateTweaker"
     }
     versionTracker {
