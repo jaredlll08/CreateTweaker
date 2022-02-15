@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.components.fan.SplashingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/SplashingRecipe")
+@Document("mods/createtweaker/recipes/type/SplashingRecipe")
 @NativeTypeRegistration(value = SplashingRecipe.class, zenCodeName = "mods.createtweaker.SplashingRecipe")
 public class ExpandSplashingRecipe {
 

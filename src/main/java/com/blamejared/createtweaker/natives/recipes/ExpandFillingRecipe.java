@@ -7,7 +7,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/FillingRecipe")
+@Document("mods/createtweaker/recipes/type/FillingRecipe")
 @NativeTypeRegistration(value = FillingRecipe.class, zenCodeName = "mods.createtweaker.FillingRecipe")
 public class ExpandFillingRecipe {
     

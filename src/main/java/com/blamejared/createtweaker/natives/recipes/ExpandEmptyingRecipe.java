@@ -9,7 +9,7 @@ import com.simibubi.create.content.contraptions.processing.EmptyingRecipe;
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/EmptyingRecipe")
+@Document("mods/createtweaker/recipes/type/EmptyingRecipe")
 @NativeTypeRegistration(value = EmptyingRecipe.class, zenCodeName = "mods.createtweaker.EmptyingRecipe")
 public class ExpandEmptyingRecipe {
     

@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
@@ -19,6 +20,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.FillingManager")
+@Document("mods/createtweaker/FillingManager")
 public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
     
     /**

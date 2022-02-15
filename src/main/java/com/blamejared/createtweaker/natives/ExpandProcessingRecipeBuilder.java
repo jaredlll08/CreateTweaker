@@ -22,7 +22,7 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.Arrays;
 
 @ZenRegister
-@Document("mods/createtweaker/ProcessingRecipeBuilder")
+@Document("mods/createtweaker/recipe/ProcessingRecipeBuilder")
 @NativeTypeRegistration(value = ProcessingRecipeBuilder.class, zenCodeName = "mods.createtweaker.ProcessingRecipeBuilder")
 public class ExpandProcessingRecipeBuilder {
     

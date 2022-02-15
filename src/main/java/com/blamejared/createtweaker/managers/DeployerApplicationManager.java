@@ -5,6 +5,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.deployer.DeployerApplicationRecipe;
@@ -15,6 +16,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.DeployerApplicationManager")
+@Document("mods/createtweaker/DeployerApplicationManager")
 public class DeployerApplicationManager implements IProcessingRecipeManager<DeployerApplicationRecipe> {
     
     @ZenCodeType.Method

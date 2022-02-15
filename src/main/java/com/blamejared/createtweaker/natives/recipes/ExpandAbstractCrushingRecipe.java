@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.components.crusher.AbstractCrushingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/AbstractCrushingRecipe")
+@Document("mods/createtweaker/recipes/type/AbstractCrushingRecipe")
 @NativeTypeRegistration(value = AbstractCrushingRecipe.class, zenCodeName = "mods.createtweaker.AbstractCrushingRecipe")
 public class ExpandAbstractCrushingRecipe {
 

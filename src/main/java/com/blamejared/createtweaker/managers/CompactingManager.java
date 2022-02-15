@@ -8,6 +8,7 @@ import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.CompactingManager")
+@Document("mods/createtweaker/CompactingManager")
 public class CompactingManager implements IProcessingRecipeManager<CompactingRecipe> {
     
     /**

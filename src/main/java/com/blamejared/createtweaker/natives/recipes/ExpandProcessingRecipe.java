@@ -14,7 +14,7 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.List;
 
 @ZenRegister
-@Document("mods/createtweaker/ProcessingRecipe")
+@Document("mods/createtweaker/recipes/type/ProcessingRecipe")
 @NativeTypeRegistration(value = ProcessingRecipe.class, zenCodeName = "mods.createtweaker.ProcessingRecipe")
 public class ExpandProcessingRecipe {
     

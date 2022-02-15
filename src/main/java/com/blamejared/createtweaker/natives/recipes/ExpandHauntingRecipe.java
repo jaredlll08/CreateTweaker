@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.components.fan.HauntingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/HauntingRecipe")
+@Document("mods/createtweaker/recipes/type/HauntingRecipe")
 @NativeTypeRegistration(value = HauntingRecipe.class, zenCodeName = "mods.createtweaker.HauntingRecipe")
 public class ExpandHauntingRecipe {
 

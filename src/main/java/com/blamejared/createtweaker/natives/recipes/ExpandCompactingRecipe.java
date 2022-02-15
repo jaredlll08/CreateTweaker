@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/CompactingRecipe")
+@Document("mods/createtweaker/recipes/type/CompactingRecipe")
 @NativeTypeRegistration(value = CompactingRecipe.class, zenCodeName = "mods.createtweaker.CompactingRecipe")
 public class ExpandCompactingRecipe {
 

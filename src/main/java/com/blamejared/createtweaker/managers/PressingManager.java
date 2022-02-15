@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.ingredient.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.press.PressingRecipe;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.PressingManager")
+@Document("mods/createtweaker/PressingManager")
 public class PressingManager implements IProcessingRecipeManager<PressingRecipe> {
     
     /**

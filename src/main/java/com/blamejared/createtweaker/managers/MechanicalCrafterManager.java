@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
 import net.minecraft.core.NonNullList;
@@ -19,6 +20,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MechanicalCrafterManager")
+@Document("mods/createtweaker/MechanicalCrafterManager")
 public class MechanicalCrafterManager implements IRecipeManager<MechanicalCraftingRecipe> {
     
     /**

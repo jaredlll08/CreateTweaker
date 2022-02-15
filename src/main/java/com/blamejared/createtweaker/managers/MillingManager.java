@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.millstone.MillingRecipe;
@@ -21,6 +22,7 @@ import java.util.Arrays;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MillingManager")
+@Document("mods/createtweaker/MillingManager")
 public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
     
     /**

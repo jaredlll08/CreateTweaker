@@ -4,6 +4,7 @@ import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipe;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeBuilder;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.SequencedAssemblyManager")
+@Document("mods/createtweaker/SequencedAssemblyManager")
 public class SequencedAssemblyManager implements IRecipeManager<SequencedAssemblyRecipe> {
     
     /**
