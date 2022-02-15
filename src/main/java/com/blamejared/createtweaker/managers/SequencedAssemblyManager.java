@@ -30,7 +30,7 @@ public class SequencedAssemblyManager implements IRecipeManager<SequencedAssembl
      *
      * @return A builder used to make sequenced assembly recipes.
      *
-     * @docParam "sequenced"
+     * @docParam name "sequenced"
      */
     @ZenCodeType.Method
     public SequencedAssemblyRecipeBuilder builder(String name) {
