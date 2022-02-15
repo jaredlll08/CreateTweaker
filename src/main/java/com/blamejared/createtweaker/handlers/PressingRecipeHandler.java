@@ -1,19 +1,18 @@
 package com.blamejared.createtweaker.handlers;
 
-import com.blamejared.crafttweaker.api.item.IIngredient;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
-import com.blamejared.crafttweaker.api.recipes.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipes.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipes.ReplacementHandlerHelper;
-import com.blamejared.crafttweaker.impl.item.MCWeightedItemStack;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
+import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
+import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.contraptions.components.crusher.CrushingRecipe;
 import com.simibubi.create.content.contraptions.components.press.PressingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,16 +29,17 @@ public class PressingRecipeHandler implements IRecipeHandler<PressingRecipe> {
                 recipe.getId(),
                 recipe.getRollableResults()
                         .stream()
-                        .map(CreateTweaker::mapMutableProcessingResult)
-                        .map(MCWeightedItemStack::getCommandString)
+                        .map(CreateTweaker::mapProcessingResult)
+                        .map(Percentaged::getCommandString)
                         .collect(Collectors.joining(", ")),
-                IIngredient.fromIngredient(recipe.getIngredients().get(0)).getCommandString()
+                IIngredient.fromIngredient(recipe.getIngredients().get(0))
+                        .getCommandString()
         );
     }
     
     @Override
     public Optional<Function<ResourceLocation, PressingRecipe>> replaceIngredients(IRecipeManager manager, PressingRecipe recipe, List<IReplacementRule> rules) {
-    
+        
         return ReplacementHandlerHelper.replaceNonNullIngredientList(
                 recipe.getIngredients(),
                 Ingredient.class,

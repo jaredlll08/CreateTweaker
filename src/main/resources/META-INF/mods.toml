@@ -1,12 +1,12 @@
-modLoader="javafml" #mandatory
-loaderVersion="[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+modLoader="javafml"
+loaderVersion="[39,)"
 license="MIT"
-[[mods]] #mandatory
-modId="createtweaker" #mandatory
-version="${file.jarVersion}" #mandatory
-displayName="CreateTweaker" #mandatory
-updateJSONURL="https://updates.blamejared.com/get?n=createtweaker&gv=1.16.5" #optional
-authors="Jaredlll08" #optional
+[[mods]]
+modId="createtweaker"
+version="${file.jarVersion}"
+displayName="CreateTweaker"
+updateJSONURL="https://updates.blamejared.com/get?n=createtweaker&gv=1.18.1"
+authors="Jaredlll08"
 description='''
 Adds CraftTweaker support to Create
 '''
@@ -14,12 +14,12 @@ Adds CraftTweaker support to Create
 [[dependencies.createtweaker]]
 modId = "create"
 mandatory = true
-versionRange = "[v0.3.2g,v0.3.2h)"
+versionRange = "[0.4d,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.createtweaker]]
 modId = "crafttweaker"
 mandatory = true
-versionRange = "[7.1,)"
+versionRange = "[9.0.57,)"
 ordering = "NONE"
 side = "BOTH"

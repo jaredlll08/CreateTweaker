@@ -1,19 +1,19 @@
 package com.blamejared.createtweaker.handlers;
 
-import com.blamejared.crafttweaker.api.item.IIngredient;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
-import com.blamejared.crafttweaker.api.recipes.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipes.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipes.ReplacementHandlerHelper;
-import com.blamejared.crafttweaker.impl.fluid.MCFluidStackMutable;
-import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
+import com.blamejared.crafttweaker.api.fluid.MCFluidStack;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.item.MCItemStack;
+import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
+import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
+import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.mojang.datafixers.util.Either;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.MixingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,18 +26,18 @@ public class MixingRecipeHandler implements IRecipeHandler<MixingRecipe> {
     @Override
     public String dumpToCommandString(IRecipeManager iRecipeManager, MixingRecipe recipe) {
         
-        Either<MCItemStackMutable, MCFluidStackMutable> result;
+        Either<MCItemStack, MCFluidStack> result;
         
         if(!recipe.getFluidResults().isEmpty()) {
-            result = Either.right(new MCFluidStackMutable(recipe.getFluidResults().get(0)));
+            result = Either.right(new MCFluidStack(recipe.getFluidResults().get(0)));
         } else {
-            result = Either.left(new MCItemStackMutable(recipe.getResultItem()));
+            result = Either.left(new MCItemStack(recipe.getResultItem()));
         }
         
         String output = String.format("<recipetype:create:mixing>.addRecipe(\"%s\", \"%s\", %s, [%s]",
                 recipe.getId(),
                 recipe.getRequiredHeat().name(),
-                result.map(MCItemStackMutable::getCommandString, MCFluidStackMutable::getCommandString),
+                result.map(MCItemStack::getCommandString, MCFluidStack::getCommandString),
                 recipe.getIngredients()
                         .stream()
                         .map(IIngredient::fromIngredient)
@@ -48,8 +48,8 @@ public class MixingRecipeHandler implements IRecipeHandler<MixingRecipe> {
         if(!recipe.getFluidResults().isEmpty()) {
             output += String.format(", [%s]", recipe.getFluidResults()
                     .stream()
-                    .map(MCFluidStackMutable::new)
-                    .map(MCFluidStackMutable::getCommandString)
+                    .map(MCFluidStack::new)
+                    .map(MCFluidStack::getCommandString)
                     .collect(Collectors.joining(", ")));
         }
         

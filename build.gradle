@@ -5,8 +5,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath group: 'com.blamejared', name: 'ModTemplate', version: '1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'com.blamejared', name: 'ModTemplate', version: '2.+', changing: true
     }
 }
 plugins {
@@ -17,13 +17,13 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 
 group = 'com.blamejared.createtweaker'
-version = '1.0.0'
-archivesBaseName = 'CreateTweaker'
+version = '2.0.0'
+archivesBaseName = 'CreateTweaker-1.18.1'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: "1.18.1"
 
     runs {
         client {
@@ -64,7 +64,7 @@ minecraft {
 }
 
 modTemplate {
-    mcVersion "1.16.5"
+    mcVersion "1.18.1"
     curseHomepage "https://www.curseforge.com/minecraft/mc-mods/createtweaker"
     displayName "CreateTweaker"
 
@@ -103,11 +103,22 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel:1.16-0.2.4.52")
-    implementation fg.deobf("com.simibubi.create:Create:mc1.16.5_v0.3.2g+480")
-    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.473")
-    compile fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137")
+    def ctDep = 'com.blamejared.crafttweaker:CraftTweaker-forge-1.18.1:9.0.57'
+    // Not actually sure if this even works, or if it is even required.
+    def mcDep = 'net.minecraftforge:forge:1.18.1-39.0.46'
+
+    minecraft mcDep
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.1.60")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4d+84")
+    compileOnly(ctDep)
+    runtimeOnly(fg.deobf(ctDep))
+    implementation fg.deobf("mezz.jei:jei-1.18.1:9.1.2.68")
+
+    annotationProcessor 'com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors-1.18.1:2.0.0.59'
+    annotationProcessor 'com.google.code.gson:gson:2.8.6'
+    annotationProcessor 'org.reflections:reflections:0.9.10'
+    annotationProcessor mcDep
+    annotationProcessor ctDep
 }
 
 jar {
@@ -161,6 +172,11 @@ publishing {
 
 }
 
+tasks.withType(GenerateModuleMetadata) {
+
+    enabled = false
+}
+
 curseforge {
 
     apiKey = findProperty('curseforge_api_token') ?: 0
@@ -169,6 +185,8 @@ curseforge {
         releaseType = 'release'
         changelog = file("changelog.md")
         changelogType = 'markdown'
+        addGameVersion("Forge")
+        addGameVersion("1.18.1")
         mainArtifact(jar) {
             relations {
                 requiredDependency "crafttweaker"
@@ -177,4 +195,7 @@ curseforge {
         }
     }
 
+}
+compileJava {
+    options.compilerArgs << "-Acrafttweaker.processor.document.output_directory=${file('docsOut')}"
 }

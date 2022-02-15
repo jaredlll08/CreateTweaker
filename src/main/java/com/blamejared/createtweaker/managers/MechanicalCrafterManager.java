@@ -1,34 +1,59 @@
 package com.blamejared.createtweaker.managers;
 
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
-import com.blamejared.crafttweaker.api.annotations.ZenRegister;
-import com.blamejared.crafttweaker.api.item.IIngredient;
+import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
+import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
-import com.blamejared.crafttweaker.impl.actions.recipes.ActionAddRecipe;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeType;
 import org.openzen.zencode.java.ZenCodeType;
 
+/**
+ * @docParam this <recipetype:create:mechanical_crafting>
+ */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MechanicalCrafterManager")
-public class MechanicalCrafterManager implements IRecipeManager {
+public class MechanicalCrafterManager implements IRecipeManager<MechanicalCraftingRecipe> {
     
+    /**
+     * Adds a recipe to the Mechanical Crafter.
+     *
+     * @param name        The name of the recipe.
+     * @param output      The output of the recipe.
+     * @param ingredients The ingredients of the recipe.
+     *
+     * @docParam name "mechanized"
+     * @docParam output <item:minecraft:diamond>
+     * @docParam ingredients [[<item:minecraft:dirt>, <item:minecraft:air>, <item:minecraft:dirt>], [<<item:minecraft:air>, <item:minecraft:dirt>, <item:minecraft:air>]]
+     */
     @ZenCodeType.Method
     public void addRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
-    
+        
         addInternal(name, output, ingredients, false);
     }
     
+    /**
+     * Adds a mirrored recipe to the Mechanical Crafter.
+     *
+     * @param name        The name of the recipe.
+     * @param output      The output of the recipe.
+     * @param ingredients The ingredients of the recipe.
+     *
+     * @docParam name "mirrorized"
+     * @docParam output <item:minecraft:glass>
+     * @docParam ingredients [[<item:minecraft:diamond>, <item:minecraft:air>, <item:minecraft:diamond>], [<<item:minecraft:air>, <item:minecraft:diamond>, <item:minecraft:air>]]
+     */
     @ZenCodeType.Method
     public void addMirroredRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
-       addInternal(name, output, ingredients, true);
+        
+        addInternal(name, output, ingredients, true);
     }
-    
     
     private void addInternal(String name, IItemStack output, IIngredient[][] ingredients, boolean mirrored) {
         
@@ -53,11 +78,11 @@ public class MechanicalCrafterManager implements IRecipeManager {
                 .toArray(new Ingredient[0]));
         MechanicalCraftingRecipe recipe = new MechanicalCraftingRecipe(resourceLocation, "", width, ingredients.length, list, output
                 .getInternal(), mirrored);
-        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, ""));
+        CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe));
     }
     
     @Override
-    public IRecipeType<MechanicalCraftingRecipe> getRecipeType() {
+    public RecipeType<MechanicalCraftingRecipe> getRecipeType() {
         
         return AllRecipeTypes.MECHANICAL_CRAFTING.getType();
     }

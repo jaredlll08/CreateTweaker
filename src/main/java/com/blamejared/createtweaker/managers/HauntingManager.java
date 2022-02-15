@@ -8,7 +8,7 @@ import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.contraptions.components.millstone.MillingRecipe;
+import com.simibubi.create.content.contraptions.components.fan.HauntingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -17,21 +17,21 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.Arrays;
 
 /**
- * @docParam this <recipetype:create:milling>
+ * @docParam this <recipetype:create:haunting>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.MillingManager")
-public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
+@ZenCodeType.Name("mods.create.HauntingManager")
+public class HauntingManager implements IProcessingRecipeManager<HauntingRecipe> {
     
     /**
-     * Adds a milling recipe.
+     * Adds a Haunting recipe.
      *
-     * @param name     The name of the recipe.
-     * @param outputs  The outputs of the recipe
+     * @param name     The name of the recipe
+     * @param outputs  The output ItemStacks of the recipe.
      * @param input    The input of the recipe.
-     * @param duration The duration of the recipe (default 100 ticks).
+     * @param duration The duration of the recipe (default 100 ticks)
      *
-     * @docParam name "milled"
+     * @docParam name "2spooky4me"
      * @docParam outputs [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> % 12) * 2]
      * @docParam input <item:minecraft:dirt>
      * @docParam duration 200
@@ -41,7 +41,7 @@ public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
-        ProcessingRecipeBuilder<MillingRecipe> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), resourceLocation);
+        ProcessingRecipeBuilder<HauntingRecipe> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), resourceLocation);
         builder.withItemOutputs(Arrays.stream(outputs)
                 .map(mcWeightedItemStack -> new ProcessingOutput(mcWeightedItemStack.getData()
                         .getInternal(), (float) mcWeightedItemStack.getPercentage()))
@@ -50,15 +50,14 @@ public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
         builder.require(input.asVanillaIngredient());
         
         builder.duration(duration);
-        MillingRecipe recipe = builder.build();
+        HauntingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe));
-        
     }
     
     @Override
     public AllRecipeTypes getCreateRecipeType() {
         
-        return AllRecipeTypes.MILLING;
+        return AllRecipeTypes.HAUNTING;
     }
     
 }

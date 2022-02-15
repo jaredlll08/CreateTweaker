@@ -1,18 +1,18 @@
 package com.blamejared.createtweaker.handlers;
 
-import com.blamejared.crafttweaker.api.item.IIngredient;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
-import com.blamejared.crafttweaker.api.recipes.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipes.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipes.ReplacementHandlerHelper;
-import com.blamejared.crafttweaker.impl.item.MCWeightedItemStack;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
+import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
+import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,12 +27,14 @@ public class DeployerApplicationRecipeHandler implements IRecipeHandler<Deployer
         
         return String.format("<recipetype:create:deploying>.addRecipe(\"%s\", %s, %s, [%s]);",
                 recipe.getId(),
-                IIngredient.fromIngredient(recipe.getProcessedItem()).getCommandString(),
-                IIngredient.fromIngredient(recipe.getRequiredHeldItem()).getCommandString(),
+                IIngredient.fromIngredient(recipe.getProcessedItem())
+                        .getCommandString(),
+                IIngredient.fromIngredient(recipe.getRequiredHeldItem())
+                        .getCommandString(),
                 recipe.getRollableResults()
                         .stream()
-                        .map(CreateTweaker::mapMutableProcessingResult)
-                        .map(MCWeightedItemStack::getCommandString)
+                        .map(CreateTweaker::mapProcessingResult)
+                        .map(Percentaged::getCommandString)
                         .collect(Collectors.joining(", "))
         );
         

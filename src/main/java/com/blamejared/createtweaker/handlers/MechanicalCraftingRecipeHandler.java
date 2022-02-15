@@ -1,18 +1,16 @@
 package com.blamejared.createtweaker.handlers;
 
-import com.blamejared.crafttweaker.api.item.IIngredient;
-import com.blamejared.crafttweaker.api.managers.IRecipeManager;
-import com.blamejared.crafttweaker.api.recipes.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipes.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipes.ReplacementHandlerHelper;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.item.MCItemStack;
+import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
+import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
+import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.StringUtils;
-import com.blamejared.crafttweaker.impl.fluid.MCFluidStackMutable;
-import com.blamejared.crafttweaker.impl.item.MCItemStackMutable;
-import com.mojang.datafixers.util.Either;
 import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +28,7 @@ public class MechanicalCraftingRecipeHandler implements IRecipeHandler<Mechanica
         return String.format(
                 "<recipetype:create:mechanical_crafting>.addRecipe(%s, %s, %s);",
                 StringUtils.quoteAndEscape(recipe.getId()),
-                new MCItemStackMutable(recipe.getResultItem()).getCommandString(),
+                new MCItemStack(recipe.getResultItem()).getCommandString(),
                 IntStream.range(0, recipe.getRecipeHeight())
                         .mapToObj(y -> IntStream.range(0, recipe.getRecipeWidth())
                                 .mapToObj(x -> ingredients.get(y * recipe.getRecipeWidth() + x))
