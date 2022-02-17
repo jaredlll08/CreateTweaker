@@ -18,7 +18,7 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.Arrays;
 
 /**
- * @docParam this <recipetype:create:compacting>
+ * @docParam this <recipetype:create:crushing>
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.CrushingManager")
