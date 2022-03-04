@@ -32,7 +32,7 @@ public class MechanicalCrafterManager implements IRecipeManager<MechanicalCrafti
      *
      * @docParam name "mechanized"
      * @docParam output <item:minecraft:diamond>
-     * @docParam ingredients [[<item:minecraft:dirt>, <item:minecraft:air>, <item:minecraft:dirt>], [<<item:minecraft:air>, <item:minecraft:dirt>, <item:minecraft:air>]]
+     * @docParam ingredients [[<item:minecraft:dirt>, <item:minecraft:air>, <item:minecraft:dirt>], [<item:minecraft:air>, <item:minecraft:dirt>, <item:minecraft:air>]]
      */
     @ZenCodeType.Method
     public void addRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
@@ -49,7 +49,7 @@ public class MechanicalCrafterManager implements IRecipeManager<MechanicalCrafti
      *
      * @docParam name "mirrorized"
      * @docParam output <item:minecraft:glass>
-     * @docParam ingredients [[<item:minecraft:diamond>, <item:minecraft:air>, <item:minecraft:diamond>], [<<item:minecraft:air>, <item:minecraft:diamond>, <item:minecraft:air>]]
+     * @docParam ingredients [[<item:minecraft:diamond>, <item:minecraft:air>, <item:minecraft:diamond>], [<item:minecraft:air>, <item:minecraft:diamond>, <item:minecraft:air>]]
      */
     @ZenCodeType.Method
     public void addMirroredRecipe(String name, IItemStack output, IIngredient[][] ingredients) {
