@@ -1,17 +1,23 @@
 package com.blamejared.createtweaker.natives.recipes;
 
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.fluid.IFluidStack;
+import com.blamejared.crafttweaker.api.fluid.MCFluidStack;
+import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker.platform.Services;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistration;
 import com.simibubi.create.content.contraptions.processing.HeatCondition;
 import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.openzen.zencode.java.ZenCodeType;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ZenRegister
 @Document("mods/createtweaker/recipes/type/ProcessingRecipe")
@@ -34,22 +40,27 @@ public class ExpandProcessingRecipe {
     
     @ZenCodeType.Method
     @ZenCodeType.Getter("fluidResults")
-    public static List<FluidStack> getFluidResults(ProcessingRecipe internal) {
+    public static List<IFluidStack> getFluidResults(ProcessingRecipe internal) {
         
-        return internal.getFluidResults();
+        NonNullList<FluidStack> fluidResults = internal.getFluidResults();
+        return fluidResults.stream().map(MCFluidStack::new).collect(Collectors.toList());
     }
     
     @ZenCodeType.Method
     @ZenCodeType.Getter("rollableResultsAsItemStacks")
-    public static List<ItemStack> getRollableResultsAsItemStacks(ProcessingRecipe internal) {
+    public static List<IItemStack> getRollableResultsAsItemStacks(ProcessingRecipe internal) {
         
-        return internal.getRollableResultsAsItemStacks();
+        List<ItemStack> rollableResultsAsItemStacks = internal.getRollableResultsAsItemStacks();
+        return rollableResultsAsItemStacks.stream()
+                .map(Services.PLATFORM::createMCItemStack)
+                .collect(Collectors.toList());
     }
     
     @ZenCodeType.Method
-    public static List<ItemStack> rollResults(ProcessingRecipe internal) {
+    public static List<IItemStack> rollResults(ProcessingRecipe internal) {
         
-        return internal.rollResults();
+        List<ItemStack> list = internal.rollResults();
+        return list.stream().map(Services.PLATFORM::createMCItemStack).collect(Collectors.toList());
     }
     
     @ZenCodeType.Method
