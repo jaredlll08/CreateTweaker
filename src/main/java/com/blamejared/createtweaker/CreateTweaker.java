@@ -43,8 +43,7 @@ public class CreateTweaker {
     public static FluidIngredient mapFluidIngredients(CTFluidIngredient ingredient) {
         
         return ingredient
-                .mapTo(FluidIngredient::fromFluidStack, (fluidITag, integer) -> FluidIngredient
-                        .fromTag((Tag.Named<Fluid>) fluidITag, integer), stream -> {
+                .mapTo(FluidIngredient::fromFluidStack, FluidIngredient::fromTag, stream -> {
                     throw new IllegalArgumentException("Unable to use a compound ingredient for Create!");
                 });
     }

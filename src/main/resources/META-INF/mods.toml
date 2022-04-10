@@ -5,7 +5,7 @@ license="MIT"
 modId="createtweaker"
 version="${file.jarVersion}"
 displayName="CreateTweaker"
-updateJSONURL="https://updates.blamejared.com/get?n=createtweaker&gv=1.18.1"
+updateJSONURL="https://updates.blamejared.com/get?n=createtweaker&gv=1.18.2"
 authors="Jaredlll08"
 description='''
 Adds CraftTweaker support to Create

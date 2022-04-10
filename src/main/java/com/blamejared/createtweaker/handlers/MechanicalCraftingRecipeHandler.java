@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
 import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
 import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
-import com.blamejared.crafttweaker.api.util.StringUtils;
+import com.blamejared.crafttweaker.api.util.StringUtil;
 import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
@@ -23,11 +23,11 @@ public class MechanicalCraftingRecipeHandler implements IRecipeHandler<Mechanica
     
     @Override
     public String dumpToCommandString(IRecipeManager iRecipeManager, MechanicalCraftingRecipe recipe) {
-    
+        
         final NonNullList<Ingredient> ingredients = recipe.getIngredients();
         return String.format(
                 "<recipetype:create:mechanical_crafting>.addRecipe(%s, %s, %s);",
-                StringUtils.quoteAndEscape(recipe.getId()),
+                StringUtil.quoteAndEscape(recipe.getId()),
                 new MCItemStack(recipe.getResultItem()).getCommandString(),
                 IntStream.range(0, recipe.getRecipeHeight())
                         .mapToObj(y -> IntStream.range(0, recipe.getRecipeWidth())

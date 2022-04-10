@@ -20,12 +20,12 @@ apply plugin: 'maven-publish'
 
 group = 'com.blamejared.createtweaker'
 version = Utils.updatingVersion('2.0.0')
-archivesBaseName = 'CreateTweaker-1.18.1'
+archivesBaseName = 'CreateTweaker-1.18.2'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: "1.18.1"
+    mappings channel: 'official', version: "1.18.2"
 
     runs {
         client {
@@ -66,7 +66,7 @@ minecraft {
 }
 
 modTemplate {
-    mcVersion "1.18.1"
+    mcVersion "1.18.2"
     curseHomepage "https://www.curseforge.com/minecraft/mc-mods/createtweaker"
     displayName "CreateTweaker"
 
@@ -105,18 +105,18 @@ repositories {
 }
 
 dependencies {
-    def ctDep = 'com.blamejared.crafttweaker:CraftTweaker-forge-1.18.1:9.0.57'
+    def ctDep = 'com.blamejared.crafttweaker:CraftTweaker-forge-1.18.2:9.1.93'
     // Not actually sure if this even works, or if it is even required.
-    def mcDep = 'net.minecraftforge:forge:1.18.1-39.0.46'
+    def mcDep = 'net.minecraftforge:forge:1.18.2-40.0.36'
 
     minecraft mcDep
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.1.60")
-    implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4d+84")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.2.66")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.18.2_v0.4.1+111")
     compileOnly(ctDep)
     runtimeOnly(fg.deobf(ctDep))
-    implementation fg.deobf("mezz.jei:jei-1.18.1:9.1.2.68")
+    implementation fg.deobf("mezz.jei:jei-1.18.2:9.5.2.133")
 
-    annotationProcessor 'com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors-1.18.1:2.0.0.59'
+    annotationProcessor 'com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors-1.18.2:2.0.0.90'
     annotationProcessor 'com.google.code.gson:gson:2.8.6'
     annotationProcessor 'org.reflections:reflections:0.9.10'
     annotationProcessor mcDep
@@ -188,7 +188,7 @@ curseforge {
         changelog = file("changelog.md")
         changelogType = 'markdown'
         addGameVersion("Forge")
-        addGameVersion("1.18.1")
+        addGameVersion("1.18.2")
         mainArtifact(jar) {
             relations {
                 requiredDependency "crafttweaker"
