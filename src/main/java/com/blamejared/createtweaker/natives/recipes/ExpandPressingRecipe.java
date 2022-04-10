@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.components.press.PressingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipes/type/PressingRecipe")
+@Document("mods/createtweaker/recipe/type/PressingRecipe")
 @NativeTypeRegistration(value = PressingRecipe.class, zenCodeName = "mods.createtweaker.PressingRecipe")
 public class ExpandPressingRecipe {
 

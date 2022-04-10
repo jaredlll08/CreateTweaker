@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.contraptions.processing.BasinRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipes/type/BasinRecipe")
+@Document("mods/createtweaker/recipe/type/BasinRecipe")
 @NativeTypeRegistration(value = BasinRecipe.class, zenCodeName = "mods.createtweaker.BasinRecipe")
 public class ExpandBasinRecipe {
 

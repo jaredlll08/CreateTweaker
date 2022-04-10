@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ZenRegister
-@Document("mods/createtweaker/recipes/type/ProcessingRecipe")
+@Document("mods/createtweaker/recipe/type/ProcessingRecipe")
 @NativeTypeRegistration(value = ProcessingRecipe.class, zenCodeName = "mods.createtweaker.ProcessingRecipe")
 public class ExpandProcessingRecipe {
     

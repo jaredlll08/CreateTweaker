@@ -9,7 +9,7 @@ import com.simibubi.create.content.contraptions.components.deployer.DeployerAppl
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/recipes/type/DeployerApplicationRecipe")
+@Document("mods/createtweaker/recipe/type/DeployerApplicationRecipe")
 @NativeTypeRegistration(value = DeployerApplicationRecipe.class, zenCodeName = "mods.createtweaker.DeployerApplicationRecipe")
 public class ExpandDeployerApplicationRecipe {
     

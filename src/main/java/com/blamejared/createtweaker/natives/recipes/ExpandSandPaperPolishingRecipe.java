@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.curiosities.tools.SandPaperPolishingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipes/type/SandPaperPolishingRecipe")
+@Document("mods/createtweaker/recipe/type/SandPaperPolishingRecipe")
 @NativeTypeRegistration(value = SandPaperPolishingRecipe.class, zenCodeName = "mods.createtweaker.SandPaperPolishingRecipe")
 public class ExpandSandPaperPolishingRecipe {
 
