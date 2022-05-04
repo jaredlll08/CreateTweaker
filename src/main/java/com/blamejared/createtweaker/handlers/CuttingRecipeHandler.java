@@ -25,7 +25,7 @@ public class CuttingRecipeHandler implements IRecipeHandler<CuttingRecipe> {
     @Override
     public String dumpToCommandString(IRecipeManager iRecipeManager, CuttingRecipe recipe) {
         
-        return String.format("<recipetype:create:cutting>.addRecipe(\"%s\", %s, %s, %s);",
+        return String.format("<recipetype:create:cutting>.addRecipe(\"%s\", [%s], %s, %s);",
                 recipe.getId(),
                 recipe.getRollableResults()
                         .stream()

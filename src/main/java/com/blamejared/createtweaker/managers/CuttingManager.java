@@ -22,6 +22,7 @@ import org.openzen.zencode.java.ZenCodeType;
 @Document("mods/createtweaker/CuttingManager")
 public class CuttingManager implements IProcessingRecipeManager<CuttingRecipe> {
     
+    //TODO remove
     /**
      * Adds a recipe to the Cutter.
      *

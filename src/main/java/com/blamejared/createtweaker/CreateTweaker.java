@@ -48,15 +48,9 @@ public class CreateTweaker {
                 });
     }
     
-    
-    public static Percentaged<IItemStack> mapMutableProcessingResult(ProcessingOutput result) {
-        
-        return new MCItemStackMutable(result.getStack()).percent(result.getChance());
-    }
-    
     public static Percentaged<IItemStack> mapProcessingResult(ProcessingOutput result) {
         
-        return new MCItemStack(result.getStack()).percent(result.getChance());
+        return new MCItemStack(result.getStack()).percent(result.getChance() * 100);
     }
     
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder.ProcessingRecipeFactory<T> getFactoryForClass(Class<T> clazz) {

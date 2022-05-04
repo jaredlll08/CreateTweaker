@@ -7,6 +7,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
@@ -43,13 +44,13 @@ public class EmptyingManager implements IProcessingRecipeManager<EmptyingRecipe>
      * @docParam duration 200
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack outputItem, IFluidStack outputFluid, IIngredient inputContainer, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, Percentaged<IItemStack> outputItem, IFluidStack outputFluid, IIngredient inputContainer, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<EmptyingRecipe> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), resourceLocation);
-        builder.output(outputItem.getInternal())
-                .output(outputFluid.getInternal());
+        builder.output((float) outputItem.getPercentage(), outputItem.getData().getInternal());
+        builder.output(outputFluid.getInternal());
         builder.require(inputContainer.asVanillaIngredient());
         
         builder.duration(duration);

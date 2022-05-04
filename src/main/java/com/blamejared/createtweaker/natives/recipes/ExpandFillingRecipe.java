@@ -16,7 +16,6 @@ public class ExpandFillingRecipe {
     @ZenCodeType.Method
     @ZenCodeType.Getter("requiredFluid")
     public static FluidIngredient getRequiredFluid(FillingRecipe internal) {
-        
         return internal.getRequiredFluid();
     }
     

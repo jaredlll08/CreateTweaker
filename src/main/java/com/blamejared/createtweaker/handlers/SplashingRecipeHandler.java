@@ -1,11 +1,12 @@
 package com.blamejared.createtweaker.handlers;
 
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
-import com.blamejared.crafttweaker.api.item.MCItemStack;
 import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
 import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
 import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker.api.util.random.Percentaged;
+import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.fan.SplashingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @IRecipeHandler.For(SplashingRecipe.class)
 public class SplashingRecipeHandler implements IRecipeHandler<SplashingRecipe> {
@@ -23,9 +25,13 @@ public class SplashingRecipeHandler implements IRecipeHandler<SplashingRecipe> {
     @Override
     public String dumpToCommandString(IRecipeManager iRecipeManager, SplashingRecipe recipe) {
         
-        return String.format("<recipetype:create:splashing>.addRecipe(\"%s\", %s, %s);",
+        return String.format("<recipetype:create:splashing>.addRecipe(\"%s\", [%s], %s);",
                 recipe.getId(),
-                new MCItemStack(recipe.getResultItem()).getCommandString(),
+                recipe.getRollableResults()
+                        .stream()
+                        .map(CreateTweaker::mapProcessingResult)
+                        .map(Percentaged::getCommandString)
+                        .collect(Collectors.joining(", ")),
                 IIngredient.fromIngredient(recipe.getIngredients().get(0))
                         .getCommandString()
         );

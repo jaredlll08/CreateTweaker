@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
@@ -39,14 +40,14 @@ public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
      * @docParam duration 200
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, IItemStack output, IIngredient inputContainer, IFluidStack inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, Percentaged<IItemStack> output, IIngredient inputContainer, IFluidStack inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<FillingRecipe> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), resourceLocation);
-        builder.output(output.getInternal());
-        builder.require(inputContainer.asVanillaIngredient())
-                .require(FluidIngredient.fromFluidStack(inputFluid.getInternal()));
+        builder.output((float) output.getPercentage(), output.getData().getInternal());
+        builder.require(inputContainer.asVanillaIngredient());
+        builder.require(FluidIngredient.fromFluidStack(inputFluid.getInternal()));
         
         builder.duration(duration);
         FillingRecipe recipe = builder.build();

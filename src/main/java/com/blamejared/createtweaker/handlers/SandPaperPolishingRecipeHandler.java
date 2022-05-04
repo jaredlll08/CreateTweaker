@@ -6,6 +6,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
 import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
 import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
@@ -25,7 +26,7 @@ public class SandPaperPolishingRecipeHandler implements IRecipeHandler<SandPaper
         
         return String.format("<recipetype:create:sandpaper_polishing>.addRecipe(\"%s\", %s, %s);",
                 recipe.getId(),
-                new MCItemStack(recipe.getResultItem()).getCommandString(),
+                CreateTweaker.mapProcessingResult(recipe.getRollableResults().get(0)).getCommandString(),
                 IIngredient.fromIngredient(recipe.getIngredients().get(0))
                         .getCommandString()
         );

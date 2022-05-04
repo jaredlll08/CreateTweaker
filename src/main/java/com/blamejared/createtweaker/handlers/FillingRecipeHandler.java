@@ -7,6 +7,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
 import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
 import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
@@ -27,7 +28,7 @@ public class FillingRecipeHandler implements IRecipeHandler<FillingRecipe> {
         
         return String.format("<recipetype:create:filling>.addRecipe(\"%s\", %s, %s, %s);",
                 recipe.getId(),
-                new MCItemStack(recipe.getResultItem()).getCommandString(),
+                CreateTweaker.mapProcessingResult(recipe.getRollableResults().get(0)).getCommandString(),
                 IIngredient.fromIngredient(recipe.getIngredients().get(0))
                         .getCommandString(),
                 new MCFluidStack(recipe.getFluidIngredients()
