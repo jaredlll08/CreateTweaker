@@ -34,7 +34,7 @@ public class CrushingManager implements IProcessingRecipeManager<CrushingRecipe>
      * @param duration The duration of the recipe in ticks (defaults to 100).
      *
      * @docParam name "crushed"
-     * @docParam output [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> % 12) * 2]
+     * @docParam output [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> * 2) % 12]
      * @docParam input <item:minecraft:glass>
      * @docParam duration 200
      */

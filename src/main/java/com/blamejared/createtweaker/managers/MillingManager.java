@@ -34,7 +34,7 @@ public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
      * @param duration The duration of the recipe (default 100 ticks).
      *
      * @docParam name "milled"
-     * @docParam outputs [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> % 12) * 2]
+     * @docParam outputs [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> * 2) % 12]
      * @docParam input <item:minecraft:dirt>
      * @docParam duration 200
      */

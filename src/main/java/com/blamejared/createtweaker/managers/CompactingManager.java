@@ -45,7 +45,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
      *
      * @docParam name "compacted"
      * @docParam heat <constant:create:heat_condition:heated>
-     * @docParam outputs [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> % 12) * 2]
+     * @docParam outputs [<item:minecraft:diamond> % 50, <item:minecraft:apple>, (<item:minecraft:dirt> * 2) % 12]
      * @docParam itemInputs [<item:minecraft:glass> * 2]
      * @docParam fluidInputs [<fluid:minecraft:water> * 250]
      * @docParam duration 200
