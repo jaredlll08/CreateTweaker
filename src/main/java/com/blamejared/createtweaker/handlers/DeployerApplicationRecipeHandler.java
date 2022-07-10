@@ -9,6 +9,7 @@ import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.deployer.DeployerApplicationRecipe;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
@@ -50,7 +51,7 @@ public class DeployerApplicationRecipeHandler implements IRecipeHandler<Deployer
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<DeployerApplicationRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<DeployerApplicationRecipe>) AllRecipeTypes.DEPLOYING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());

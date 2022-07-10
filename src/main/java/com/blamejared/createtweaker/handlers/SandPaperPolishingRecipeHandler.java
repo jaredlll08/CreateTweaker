@@ -8,6 +8,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerH
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import com.simibubi.create.content.curiosities.tools.SandPaperPolishingRecipe;
@@ -42,7 +43,7 @@ public class SandPaperPolishingRecipeHandler implements IRecipeHandler<SandPaper
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<SandPaperPolishingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<SandPaperPolishingRecipe>) AllRecipeTypes.SANDPAPER_POLISHING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());

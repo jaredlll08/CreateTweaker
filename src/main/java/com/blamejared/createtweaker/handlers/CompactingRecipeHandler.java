@@ -13,8 +13,10 @@ import com.blamejared.createtweaker.CreateTweaker;
 import com.mojang.datafixers.util.Either;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
+import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -71,7 +73,7 @@ public class CompactingRecipeHandler implements IRecipeHandler<CompactingRecipe>
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<CompactingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CompactingRecipe>) AllRecipeTypes.COMPACTING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());

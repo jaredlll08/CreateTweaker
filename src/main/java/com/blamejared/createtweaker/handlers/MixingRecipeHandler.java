@@ -13,6 +13,7 @@ import com.blamejared.createtweaker.CreateTweaker;
 import com.mojang.datafixers.util.Either;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.MixingRecipe;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
@@ -75,7 +76,7 @@ public class MixingRecipeHandler implements IRecipeHandler<MixingRecipe> {
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<MixingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<MixingRecipe>) AllRecipeTypes.MIXING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());

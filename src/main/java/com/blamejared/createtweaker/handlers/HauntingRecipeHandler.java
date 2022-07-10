@@ -10,6 +10,7 @@ import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.fan.HauntingRecipe;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
@@ -44,7 +45,7 @@ public class HauntingRecipeHandler implements IRecipeHandler<HauntingRecipe> {
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<HauntingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<HauntingRecipe>) AllRecipeTypes.HAUNTING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());

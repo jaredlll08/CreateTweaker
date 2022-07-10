@@ -9,6 +9,7 @@ import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.crusher.CrushingRecipe;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
@@ -48,7 +49,7 @@ public class CrushingRecipeHandler implements IRecipeHandler<CrushingRecipe> {
                 rules,
                 newIngredients -> id -> {
                     ProcessingRecipeBuilder<CrushingRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<CrushingRecipe>) AllRecipeTypes.CRUSHING.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults());
+                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
                     builder.withItemIngredients(newIngredients);
                     builder.withFluidIngredients(recipe.getFluidIngredients());
                     builder.requiresHeat(recipe.getRequiredHeat());
