@@ -19,6 +19,19 @@ import org.openzen.zencode.java.ZenCodeType;
 @Document("mods/createtweaker/ItemApplicationManager")
 public class ItemApplicationManager implements IProcessingRecipeManager<ItemApplicationRecipe> {
     
+    /**
+     * Adds a new item application recipe.
+     *
+     * @param name The name of the recipe.
+     * @param outputs The recipe outputs
+     * @param block The block to be applied on
+     * @param heldItem The item that needs to be held
+     *
+     * @docParam name "name"
+     * @docParam outputs [<item:minecraft:dirt> % 50, <item:minecraft:diamond>]
+     * @docParam block <item:minecraft:diamond_block>
+     * @docParam heldItem <item:minecraft:emerald>
+     */
     @ZenCodeType.Method
     public void addRecipe(String name, Percentaged<IItemStack>[] outputs, IIngredient block, IIngredient heldItem) {
         
