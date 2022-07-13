@@ -19,8 +19,23 @@ import org.openzen.zencode.java.ZenCodeType;
 @Document("mods/createtweaker/DeployerApplicationManager")
 public class DeployerApplicationManager implements IProcessingRecipeManager<DeployerApplicationRecipe> {
     
+    /**
+     * Adds a new deployer application recipe.
+     *
+     * @param name          The name of the recipe
+     * @param processedItem The item to be deployed onto
+     * @param heldItem      The item to deploy with
+     * @param outputs       The output of the recipe
+     * @param keepHeldItem  Should the held item be consumed
+     *
+     * @docParam name "name"
+     * @docParam processedItem <item:minecraft:air>
+     * @docParam heldItem <item:minecraft:diamond>
+     * @docParam outputs [<item:minecraft:dirt> % 50]
+     * @docParam keepHeldItem true
+     */
     @ZenCodeType.Method
-    public void addRecipe(String name, IIngredient processedItem, IIngredient heldItem, Percentaged<IItemStack>[] outputs) {
+    public void addRecipe(String name, IIngredient processedItem, IIngredient heldItem, Percentaged<IItemStack>[] outputs, @ZenCodeType.OptionalBoolean boolean keepHeldItem) {
         
         if(outputs.length > 2) {
             throw new IllegalArgumentException(String.format("Deployer recipe has more outputs (%s) than supported (2)!", outputs.length));
@@ -28,6 +43,9 @@ public class DeployerApplicationManager implements IProcessingRecipeManager<Depl
         registerRecipe(name, recipeBuilder -> {
             recipeBuilder.require(processedItem.asVanillaIngredient());
             recipeBuilder.require(heldItem.asVanillaIngredient());
+            if(keepHeldItem) {
+                recipeBuilder.toolNotConsumed();
+            }
             for(Percentaged<IItemStack> stack : outputs) {
                 recipeBuilder.output((float) stack.getPercentage(), stack.getData()
                         .getInternal());

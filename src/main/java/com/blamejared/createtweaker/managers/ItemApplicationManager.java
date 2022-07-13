@@ -22,22 +22,27 @@ public class ItemApplicationManager implements IProcessingRecipeManager<ItemAppl
     /**
      * Adds a new item application recipe.
      *
-     * @param name The name of the recipe.
-     * @param outputs The recipe outputs
-     * @param block The block to be applied on
-     * @param heldItem The item that needs to be held
+     * @param name         The name of the recipe.
+     * @param outputs      The recipe outputs
+     * @param block        The block to be applied on
+     * @param heldItem     The item that needs to be held
+     * @param keepHeldItem Should the item be consumed or not
      *
      * @docParam name "name"
      * @docParam outputs [<item:minecraft:dirt> % 50, <item:minecraft:diamond>]
      * @docParam block <item:minecraft:diamond_block>
      * @docParam heldItem <item:minecraft:emerald>
+     * @docParam keepHeldItem true
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, Percentaged<IItemStack>[] outputs, IIngredient block, IIngredient heldItem) {
+    public void addRecipe(String name, Percentaged<IItemStack>[] outputs, IIngredient block, IIngredient heldItem, @ZenCodeType.OptionalBoolean boolean keepHeldItem) {
         
         registerRecipe(name, recipeBuilder -> {
             recipeBuilder.require(block.asVanillaIngredient());
             recipeBuilder.require(heldItem.asVanillaIngredient());
+            if(keepHeldItem) {
+                recipeBuilder.toolNotConsumed();
+            }
             for(Percentaged<IItemStack> mcWeightedItemStack : outputs) {
                 recipeBuilder.output((float) mcWeightedItemStack.getPercentage(), mcWeightedItemStack.getData()
                         .getInternal());
