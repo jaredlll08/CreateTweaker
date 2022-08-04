@@ -56,7 +56,7 @@ public class CreateTweaker {
     public static <T extends ProcessingRecipe<?>> ProcessingRecipeBuilder.ProcessingRecipeFactory<T> getFactoryForClass(Class<T> clazz) {
         
         if(!CLASS_TO_FACTORY.get().containsKey(clazz)) {
-            throw new IllegalArgumentException("Unable to use non Assembly recipe: '%s' in Sequenced Assembly Recipe!");
+            throw new IllegalArgumentException("Unable to use non Assembly recipe: '%s' in Sequenced Assembly Recipe!".formatted(clazz.getName()));
         }
         return (ProcessingRecipeBuilder.ProcessingRecipeFactory<T>) CLASS_TO_FACTORY.get().get(clazz);
     }
