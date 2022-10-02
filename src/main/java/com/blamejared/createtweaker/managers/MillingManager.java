@@ -54,7 +54,6 @@ public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
         builder.duration(duration);
         MillingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe));
-        
     }
     
     @Override

@@ -3,11 +3,13 @@ package com.blamejared.createtweaker.managers;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.fluid.CTFluidIngredient;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
+import com.blamejared.createtweaker.CreateTweaker;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
@@ -23,6 +25,12 @@ import org.openzen.zencode.java.ZenCodeType;
 @ZenCodeType.Name("mods.create.FillingManager")
 @Document("mods/createtweaker/FillingManager")
 public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
+    
+    @Deprecated(forRemoval = true)
+    public void addRecipe(String name, Percentaged<IItemStack> output, IIngredient inputContainer, IFluidStack inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
+        
+        addRecipe(name, output, inputContainer, inputFluid.asFluidIngredient(), duration);
+    }
     
     /**
      * Adds a filling recipe.
@@ -40,19 +48,18 @@ public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
      * @docParam duration 200
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, Percentaged<IItemStack> output, IIngredient inputContainer, IFluidStack inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, Percentaged<IItemStack> output, IIngredient inputContainer, CTFluidIngredient inputFluid, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<FillingRecipe> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), resourceLocation);
         builder.output((float) output.getPercentage(), output.getData().getInternal());
         builder.require(inputContainer.asVanillaIngredient());
-        builder.require(FluidIngredient.fromFluidStack(inputFluid.getInternal()));
+        builder.require(CreateTweaker.mapFluidIngredients(inputFluid));
         
         builder.duration(duration);
         FillingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe));
-        
     }
     
     @Override

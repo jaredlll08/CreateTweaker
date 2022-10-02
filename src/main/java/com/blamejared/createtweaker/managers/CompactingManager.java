@@ -2,23 +2,23 @@ package com.blamejared.createtweaker.managers;
 
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
-import com.blamejared.crafttweaker.api.action.recipe.ActionRecipeBase;
+import com.blamejared.crafttweaker.api.action.recipe.ActionRemoveRecipe;
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.fluid.CTFluidIngredient;
 import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredientWithAmount;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
+import com.blamejared.createtweaker.CreateTweaker;
 import com.blamejared.createtweaker.managers.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
 import com.simibubi.create.content.contraptions.processing.HeatCondition;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fluids.FluidStack;
 import org.openzen.zencode.java.ZenCodeType;
 
 import java.util.ArrayList;
@@ -32,6 +32,22 @@ import java.util.List;
 @ZenCodeType.Name("mods.create.CompactingManager")
 @Document("mods/createtweaker/CompactingManager")
 public class CompactingManager implements IProcessingRecipeManager<CompactingRecipe> {
+    
+    @Deprecated(forRemoval = true)
+    public void addRecipe(String name, HeatCondition heat, Percentaged<IItemStack>[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.IFluidStack[]") IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+        
+        addRecipe(name, heat, outputs, itemInputs, Arrays.stream(fluidInputs)
+                .map(IFluidStack::asFluidIngredient)
+                .toArray(CTFluidIngredient[]::new), duration);
+    }
+    
+    @Deprecated(forRemoval = true)
+    public void addRecipe(String name, HeatCondition heat, IFluidStack[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.IFluidStack[]") IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+        
+        addRecipe(name, heat, outputs, itemInputs, Arrays.stream(fluidInputs)
+                .map(IFluidStack::asFluidIngredient)
+                .toArray(CTFluidIngredient[]::new), duration);
+    }
     
     /**
      * Adds a recipe to the Compactor that outputs ItemStacks.
@@ -51,7 +67,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
      * @docParam duration 200
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, HeatCondition heat, Percentaged<IItemStack>[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.IFluidStack[]") IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, HeatCondition heat, Percentaged<IItemStack>[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.FluidIngredient[]") CTFluidIngredient[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -72,7 +88,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
         builder.withItemIngredients(ingredients.toArray(new Ingredient[0]));
         if(fluidInputs != null && fluidInputs.length != 0) {
             builder.withFluidIngredients(Arrays.stream(fluidInputs)
-                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal()))
+                    .map(CreateTweaker::mapFluidIngredients)
                     .toArray(FluidIngredient[]::new));
         }
         builder.requiresHeat(heat);
@@ -100,7 +116,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
      * @docParam duration 200
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, HeatCondition heat, IFluidStack[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.IFluidStack[]") IFluidStack[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
+    public void addRecipe(String name, HeatCondition heat, IFluidStack[] outputs, IIngredientWithAmount[] itemInputs, @ZenCodeType.Optional("[] as crafttweaker.api.fluid.FluidIngredient[]") CTFluidIngredient[] fluidInputs, @ZenCodeType.OptionalInt(100) int duration) {
         
         name = fixRecipeName(name);
         ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", name);
@@ -120,7 +136,7 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
         builder.withItemIngredients(ingredients.toArray(new Ingredient[0]));
         if(fluidInputs != null) {
             builder.withFluidIngredients(Arrays.stream(fluidInputs)
-                    .map(iFluidStack -> FluidIngredient.fromFluidStack(iFluidStack.getInternal()))
+                    .map(CreateTweaker::mapFluidIngredients)
                     .toArray(FluidIngredient[]::new));
         }
         builder.requiresHeat(heat);
@@ -128,6 +144,13 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
         builder.duration(duration);
         CompactingRecipe recipe = builder.build();
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe));
+    }
+    
+    
+    @Deprecated(forRemoval = true)
+    public void remove(IFluidStack output) {
+        
+        remove(output.asFluidIngredient());
     }
     
     /**
@@ -138,36 +161,10 @@ public class CompactingManager implements IProcessingRecipeManager<CompactingRec
      * @docParam output <fluid:minecraft:water>
      */
     @ZenCodeType.Method
-    public void remove(IFluidStack output) {
+    public void remove(CTFluidIngredient output) {
         
-        CraftTweakerAPI.apply(new ActionRecipeBase<>(this) {
-            @Override
-            public void apply() {
-                
-                List<ResourceLocation> toRemove = new ArrayList<>();
-                for(ResourceLocation location : getManager().getRecipes()
-                        .keySet()) {
-                    CompactingRecipe recipe = getManager().getRecipes()
-                            .get(location);
-                    if(recipe.getFluidResults().isEmpty()) {
-                        continue;
-                    }
-                    FluidStack fluidStack = recipe.getFluidResults().get(0);
-                    if(output.getInternal().isFluidEqual(fluidStack)) {
-                        toRemove.add(location);
-                    }
-                }
-                toRemove.forEach(getManager().getRecipes()::remove);
-                
-            }
-            
-            @Override
-            public String describe() {
-                
-                return "Removing \"" + Registry.RECIPE_TYPE.getKey(this.getManager()
-                        .getRecipeType()) + "\" recipes with output: " + output + "\"";
-            }
-        });
+        CraftTweakerAPI.apply(new ActionRemoveRecipe<>(this, recipe -> !recipe.getFluidResults()
+                .isEmpty() && output.matches(recipe.getFluidResults().get(0))).describeDefaultRemoval(output));
     }
     
     @Override

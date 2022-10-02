@@ -23,6 +23,7 @@ import org.openzen.zencode.java.ZenCodeType;
 public class CuttingManager implements IProcessingRecipeManager<CuttingRecipe> {
     
     //TODO remove
+    
     /**
      * Adds a recipe to the Cutter.
      *
@@ -36,6 +37,7 @@ public class CuttingManager implements IProcessingRecipeManager<CuttingRecipe> {
      * @docParam input <item:minecraft:glass>
      * @docParam duration 200
      */
+    @Deprecated(forRemoval = true)
     @ZenCodeType.Method
     public void addRecipe(String name, Percentaged<IItemStack> output, IIngredient input, @ZenCodeType.OptionalInt(100) int duration) {
         

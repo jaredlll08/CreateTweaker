@@ -20,6 +20,6 @@ side = "BOTH"
 [[dependencies.createtweaker]]
 modId = "crafttweaker"
 mandatory = true
-versionRange = "[9.0.57,)"
+versionRange = "[9.1.192,)"
 ordering = "NONE"
 side = "BOTH"

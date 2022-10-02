@@ -51,7 +51,6 @@ public class DeployerApplicationManager implements IProcessingRecipeManager<Depl
                         .getInternal());
             }
         });
-        
     }
     
     @Override
