@@ -1,27 +1,23 @@
 package com.blamejared.createtweaker.handlers;
 
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.recipe.component.IDecomposedRecipe;
 import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
-import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.components.deployer.ManualApplicationRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
+import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
+import com.simibubi.create.content.contraptions.processing.ItemApplicationRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @IRecipeHandler.For(ManualApplicationRecipe.class)
-public class ItemApplicationRecipeHandler implements IRecipeHandler<ManualApplicationRecipe> {
+public class ItemApplicationRecipeHandler implements IProcessingRecipeHandler<ManualApplicationRecipe> {
     
     @Override
     public String dumpToCommandString(IRecipeManager iRecipeManager, ManualApplicationRecipe recipe) {
@@ -37,28 +33,21 @@ public class ItemApplicationRecipeHandler implements IRecipeHandler<ManualApplic
                         .getCommandString(),
                 IIngredient.fromIngredient(recipe.getRequiredHeldItem())
                         .getCommandString()
-                
+        
         );
         
     }
     
     @Override
-    public Optional<Function<ResourceLocation, ManualApplicationRecipe>> replaceIngredients(IRecipeManager manager, ManualApplicationRecipe recipe, List<IReplacementRule> rules) {
+    public boolean isGoodRecipe(Recipe<?> recipe) {
         
-        return ReplacementHandlerHelper.replaceNonNullIngredientList(
-                recipe.getIngredients(),
-                Ingredient.class,
-                recipe,
-                rules,
-                newIngredients -> id -> {
-                    ProcessingRecipeBuilder<ManualApplicationRecipe> builder = new ProcessingRecipeBuilder<>(((ProcessingRecipeSerializer<ManualApplicationRecipe>) AllRecipeTypes.ITEM_APPLICATION.getSerializer()).getFactory(), id);
-                    builder.withItemOutputs(recipe.getRollableResults().toArray(ProcessingOutput[]::new));
-                    builder.withItemIngredients(newIngredients);
-                    builder.withFluidIngredients(recipe.getFluidIngredients());
-                    builder.requiresHeat(recipe.getRequiredHeat());
-                    builder.duration(recipe.getProcessingDuration());
-                    return builder.build();
-                });
+        return recipe instanceof ManualApplicationRecipe;
+    }
+    
+    @Override
+    public ProcessingRecipeBuilder.ProcessingRecipeFactory<ManualApplicationRecipe> factory() {
+        
+        return ManualApplicationRecipe::new;
     }
     
 }

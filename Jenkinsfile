@@ -7,11 +7,11 @@ def botUsername = 'crafttweakerbot'
 def botEmail = 'crafttweakerbot@gmail.com'
 
 def documentationDir = 'CrafttweakerDocumentation'
-def exportDirInRepo = 'docs_exported/1.18/createtweaker'
+def exportDirInRepo = 'docs_exported/1.19/createtweaker'
 
 def docCommitMessage = { -> "CI doc export for CreateTweaker build ${env.BUILD_NUMBER}\n\nMatches git commit ${env.GIT_COMMIT} on branch ${env.BRANCH_NAME}" }
 
-def branchName = "1.18";
+def branchName = "1.19";
 
 pipeline {
     agent any

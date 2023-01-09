@@ -52,7 +52,7 @@ public class ExpandProcessingRecipe {
         
         List<ItemStack> rollableResultsAsItemStacks = internal.getRollableResultsAsItemStacks();
         return rollableResultsAsItemStacks.stream()
-                .map(Services.PLATFORM::createMCItemStack)
+                .map(IItemStack::of)
                 .collect(Collectors.toList());
     }
     
@@ -60,7 +60,7 @@ public class ExpandProcessingRecipe {
     public static List<IItemStack> rollResults(ProcessingRecipe internal) {
         
         List<ItemStack> list = internal.rollResults();
-        return list.stream().map(Services.PLATFORM::createMCItemStack).collect(Collectors.toList());
+        return list.stream().map(IItemStack::of).collect(Collectors.toList());
     }
     
     @ZenCodeType.Method

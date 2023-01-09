@@ -1,20 +1,24 @@
 package com.blamejared.createtweaker.handlers;
 
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.item.MCItemStack;
+import com.blamejared.crafttweaker.api.recipe.MirrorAxis;
+import com.blamejared.crafttweaker.api.recipe.component.BuiltinRecipeComponents;
+import com.blamejared.crafttweaker.api.recipe.component.IDecomposedRecipe;
 import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
-import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
-import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.StringUtil;
+import com.blamejared.crafttweaker.platform.Services;
+import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,16 +44,54 @@ public class MechanicalCraftingRecipeHandler implements IRecipeHandler<Mechanica
     }
     
     @Override
-    public Optional<Function<ResourceLocation, MechanicalCraftingRecipe>> replaceIngredients(IRecipeManager manager, MechanicalCraftingRecipe recipe, List<IReplacementRule> rules) {
+    public <U extends Recipe<?>> boolean doesConflict(IRecipeManager<? super MechanicalCraftingRecipe> manager, MechanicalCraftingRecipe firstRecipe, U secondRecipe) {
         
-        return ReplacementHandlerHelper.replaceNonNullIngredientList(
-                recipe.getIngredients(),
-                Ingredient.class,
-                recipe,
-                rules,
-                newIngredients -> id -> new MechanicalCraftingRecipe(id, recipe.getGroup(), recipe.getRecipeWidth(), recipe.getRecipeHeight(), newIngredients, recipe.getResultItem(), recipe.acceptsMirrored())
-        );
+        return Services.PLATFORM.doCraftingTableRecipesConflict(manager, firstRecipe, secondRecipe);
+    }
+    
+    @Override
+    public Optional<IDecomposedRecipe> decompose(IRecipeManager<? super MechanicalCraftingRecipe> manager, MechanicalCraftingRecipe recipe) {
         
+        final List<IIngredient> ingredients = recipe.getIngredients().stream()
+                .map(IIngredient::fromIngredient)
+                .toList();
+        final IDecomposedRecipe decomposedRecipe = IDecomposedRecipe.builder()
+                .with(BuiltinRecipeComponents.Metadata.GROUP, recipe.getGroup())
+                .with(BuiltinRecipeComponents.Metadata.SHAPE_SIZE_2D, Pair.of(recipe.getWidth(), recipe.getHeight()))
+                .with(BuiltinRecipeComponents.Input.INGREDIENTS, ingredients)
+                .with(BuiltinRecipeComponents.Output.ITEMS, IItemStack.of(recipe.getResultItem()))
+                .with(BuiltinRecipeComponents.Metadata.MIRROR_AXIS, recipe.acceptsMirrored() ? MirrorAxis.HORIZONTAL : MirrorAxis.NONE)
+                .build();
+        return Optional.of(decomposedRecipe);
+    }
+    
+    @Override
+    public Optional<MechanicalCraftingRecipe> recompose(IRecipeManager<? super MechanicalCraftingRecipe> manager, ResourceLocation name, IDecomposedRecipe recipe) {
+        
+        final String group = recipe.getOrThrowSingle(BuiltinRecipeComponents.Metadata.GROUP);
+        final Pair<Integer, Integer> size = recipe.getOrThrowSingle(BuiltinRecipeComponents.Metadata.SHAPE_SIZE_2D);
+        final List<IIngredient> ingredients = recipe.getOrThrow(BuiltinRecipeComponents.Input.INGREDIENTS);
+        final IItemStack output = recipe.getOrThrowSingle(BuiltinRecipeComponents.Output.ITEMS);
+        final boolean acceptsMirrored = recipe.getOrThrowSingle(BuiltinRecipeComponents.Metadata.MIRROR_AXIS)
+                .isMirrored();
+        
+        final int width = size.getFirst();
+        final int height = size.getSecond();
+        
+        if(width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Invalid shape size: bounds must be positive but got " + size);
+        }
+        if(width * height != ingredients.size()) {
+            throw new IllegalArgumentException("Invalid shape size: incompatible with ingredients, got " + size + " with " + ingredients.size());
+        }
+        if(output.isEmpty()) {
+            throw new IllegalArgumentException("Invalid output: empty item");
+        }
+        
+        final NonNullList<Ingredient> recipeIngredients = ingredients.stream()
+                .map(IIngredient::asVanillaIngredient)
+                .collect(NonNullList::create, NonNullList::add, NonNullList::addAll);
+        return Optional.of(new MechanicalCraftingRecipe(name, group, width, height, recipeIngredients, output.getInternal(), acceptsMirrored));
     }
     
 }

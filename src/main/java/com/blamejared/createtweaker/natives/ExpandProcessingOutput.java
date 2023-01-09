@@ -17,7 +17,7 @@ public class ExpandProcessingOutput {
     @ZenCodeType.Getter("stack")
     public static IItemStack getStack(ProcessingOutput internal) {
         
-        return Services.PLATFORM.createMCItemStack(internal.getStack());
+        return IItemStack.of(internal.getStack());
     }
     
     @ZenCodeType.Method
@@ -30,7 +30,7 @@ public class ExpandProcessingOutput {
     @ZenCodeType.Method
     public static IItemStack rollOutput(ProcessingOutput internal) {
         
-        return Services.PLATFORM.createMCItemStack(internal.rollOutput());
+        return IItemStack.of(internal.rollOutput());
     }
     
 }
