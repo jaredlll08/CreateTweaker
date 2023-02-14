@@ -50,6 +50,12 @@ public class ExpandSequencedAssemblyRecipeBuilder {
         return internal.transitionTo(item);
     }
     
+    @ZenCodeType.Method // Could be made @OptionalFloat, but I just want to be safe
+    public static SequencedAssemblyRecipeBuilder addOutput(SequencedAssemblyRecipeBuilder internal, IItemStack output) {
+        
+        return internal.addOutput(output.getInternal(), 1.0f);
+    }
+    
     @ZenCodeType.Method
     public static SequencedAssemblyRecipeBuilder addOutput(SequencedAssemblyRecipeBuilder internal, IItemStack output, float weight) {
         
