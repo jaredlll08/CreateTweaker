@@ -6,18 +6,19 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath group: 'com.blamejared', name: 'ModTemplate', version: '1.+', changing: true
+        classpath group: 'com.blamejared', name: 'ModTemplate', version: '2.+', changing: true
     }
 }
+
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 apply plugin: 'com.blamejared.modtemplate'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
-
+import com.blamejared.modtemplate.Utils
 group = 'com.blamejared.createtweaker'
-version = '1.0.0'
+version = Utils.updatingVersion('1.0.0')
 archivesBaseName = 'CreateTweaker'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
