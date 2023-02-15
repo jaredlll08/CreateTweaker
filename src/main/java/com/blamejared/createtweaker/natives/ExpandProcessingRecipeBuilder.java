@@ -2,7 +2,7 @@ package com.blamejared.createtweaker.natives;
 
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.fluid.CTFluidIngredient;
-import com.blamejared.crafttweaker.api.fluid.MCFluidStack;
+import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
@@ -98,10 +98,10 @@ public class ExpandProcessingRecipeBuilder {
      * @return This builder for further chaining.
      */
     @ZenCodeType.Method
-    public static ProcessingRecipeBuilder<ProcessingRecipe<Container>> withFluidOutputs(ProcessingRecipeBuilder internal, MCFluidStack... outputs) {
+    public static ProcessingRecipeBuilder<ProcessingRecipe<Container>> withFluidOutputs(ProcessingRecipeBuilder internal, IFluidStack... outputs) {
         
         return internal.withFluidOutputs(Arrays.stream(outputs)
-                .map(MCFluidStack::getInternal)
+                .map(IFluidStack::getInternal)
                 .toArray(FluidStack[]::new));
     }
     
@@ -188,14 +188,14 @@ public class ExpandProcessingRecipeBuilder {
     }
     
     /**
-     * Sets the recipe to output the given {@link MCFluidStack}.
+     * Sets the recipe to output the given {@link IFluidStack}.
      *
      * @param fluidStack The fluid to output.
      *
      * @return This builder for futher chaining.
      */
     @ZenCodeType.Method
-    public static ProcessingRecipeBuilder<ProcessingRecipe<Container>> output(ProcessingRecipeBuilder internal, MCFluidStack fluidStack) {
+    public static ProcessingRecipeBuilder<ProcessingRecipe<Container>> output(ProcessingRecipeBuilder internal, IFluidStack fluidStack) {
         
         return internal.output(fluidStack.getInternal());
     }

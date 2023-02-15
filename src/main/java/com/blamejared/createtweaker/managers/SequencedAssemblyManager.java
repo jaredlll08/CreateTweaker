@@ -74,19 +74,19 @@ public class SequencedAssemblyManager implements IRecipeManager<SequencedAssembl
      * @param builder The buidler that defines the recipe.
      *
      * @docParam builder <recipetype:create:sequenced_assembly>.builder("seq_blast_brick")
-     *                                                      .transitionTo(<item:create:incomplete_large_cogwheel>)
-     *                                                      .require(<item:create:andesite_alloy>)
-     *                                                      .loops(3)
-     *                                                      .addOutput(<item:create:large_cogwheel> * 6, 32)
-     *                                                      .addOutput(<item:create:andesite_alloy>, 2)
-     *                                                      .addOutput(<item:minecraft:andesite>, 1)
-     *                                                      .addOutput(<item:create:cogwheel>, 1)
-     *                                                      .addOutput(<item:minecraft:stick>, 1)
-     *                                                      .addOutput(<item:minecraft:iron_nugget>, 1)
-     *                                                      .addStep<mods.createtweaker.DeployerApplicationRecipe>((rb) => rb.require(<tag:items:minecraft:planks>))
-     *                                                      .addStep<mods.createtweaker.DeployerApplicationRecipe>((rb) => rb.require(<tag:items:minecraft:wooden_buttons>))
-     *                                                      .addStep<mods.createtweaker.CuttingRecipe>((rb) => rb.duration(50))
-     *                                                      .addStep<mods.createtweaker.FillingRecipe>((rb) => rb.require(<fluid:minecraft:water> * 50))
+     * .transitionTo(<item:create:incomplete_large_cogwheel>)
+     * .require(<item:create:andesite_alloy>)
+     * .loops(3)
+     * .addOutput(<item:create:large_cogwheel> * 6, 32)
+     * .addOutput(<item:create:andesite_alloy>, 2)
+     * .addOutput(<item:minecraft:andesite>, 1)
+     * .addOutput(<item:create:cogwheel>, 1)
+     * .addOutput(<item:minecraft:stick>, 1)
+     * .addOutput(<item:minecraft:iron_nugget>, 1)
+     * .addStep<mods.createtweaker.DeployerApplicationRecipe>((rb) => rb.require(<tag:items:minecraft:planks>))
+     * .addStep<mods.createtweaker.DeployerApplicationRecipe>((rb) => rb.require(<tag:items:minecraft:wooden_buttons>))
+     * .addStep<mods.createtweaker.CuttingRecipe>((rb) => rb.duration(50))
+     * .addStep<mods.createtweaker.FillingRecipe>((rb) => rb.require(<fluid:minecraft:water> * 50))
      */
     @ZenCodeType.Method
     public void addRecipe(SequencedAssemblyRecipeBuilder builder) {

@@ -22,12 +22,12 @@ import java.util.function.Consumer;
 @ZenCodeType.Name("mods.create.IProcessingRecipeManager")
 @Document("mods/createtweaker/IProcessingRecipeManager")
 public interface IProcessingRecipeManager<T extends ProcessingRecipe<?>> extends IRecipeManager<T> {
-
+    
     default ProcessingRecipeSerializer<T> getSerializer() {
-
+        
         return getCreateRecipeType().getSerializer();
     }
-
+    
     /**
      * Registers a recipe using a builder approach.
      *
@@ -36,22 +36,22 @@ public interface IProcessingRecipeManager<T extends ProcessingRecipe<?>> extends
      */
     @ZenCodeType.Method
     default void registerRecipe(String name, Consumer<ProcessingRecipeBuilder<T>> recipeBuilder) {
-
+        
         name = fixRecipeName(name);
         ResourceLocation recipeId = new ResourceLocation("crafttweaker", name);
         ProcessingRecipeBuilder<T> builder = new ProcessingRecipeBuilder<>(getSerializer().getFactory(), recipeId);
         recipeBuilder.accept(builder);
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, builder.build(), ""));
     }
-
-
+    
+    
     AllRecipeTypes getCreateRecipeType();
-
+    
     @Override
     default RecipeType<T> getRecipeType() {
-
+        
         return getCreateRecipeType().getType();
     }
-
-
+    
+    
 }
