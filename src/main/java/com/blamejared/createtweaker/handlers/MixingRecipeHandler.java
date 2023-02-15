@@ -60,7 +60,7 @@ public class MixingRecipeHandler implements IRecipeHandler<MixingRecipe> {
                 recipe.getFluidResults()
                         .stream()
                         .map(MCFluidStack::new)
-                        .map(MCFluidStack::getCommandString)
+                        .map(IFluidStack::getCommandString)
                         .collect(Collectors.joining(", "))
         );
         

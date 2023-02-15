@@ -57,7 +57,7 @@ public class CompactingRecipeHandler implements IRecipeHandler<CompactingRecipe>
                 recipe.getFluidResults()
                         .stream()
                         .map(MCFluidStack::new)
-                        .map(MCFluidStack::getCommandString)
+                        .map(IFluidStack::getCommandString)
                         .collect(Collectors.joining(", "))
         );
         

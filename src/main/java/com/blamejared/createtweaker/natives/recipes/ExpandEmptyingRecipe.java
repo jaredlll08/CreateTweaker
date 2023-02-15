@@ -2,6 +2,7 @@ package com.blamejared.createtweaker.natives.recipes;
 
 
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.fluid.IFluidStack;
 import com.blamejared.crafttweaker.api.fluid.MCFluidStack;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistration;
@@ -15,7 +16,7 @@ public class ExpandEmptyingRecipe {
     
     @ZenCodeType.Method
     @ZenCodeType.Getter("resultingFluid")
-    public static MCFluidStack getResultingFluid(EmptyingRecipe internal) {
+    public static IFluidStack getResultingFluid(EmptyingRecipe internal) {
         
         return new MCFluidStack(internal.getResultingFluid());
     }
