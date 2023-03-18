@@ -71,7 +71,7 @@ public class SequencedAssemblyManager implements IRecipeManager<SequencedAssembl
     /**
      * Adds the recipe that the builder built.
      *
-     * @param builder The buidler that defines the recipe.
+     * @param builder The builder that defines the recipe.
      *
      * @docParam builder <recipetype:create:sequenced_assembly>.builder("seq_blast_brick")
      * .transitionTo(<item:create:incomplete_large_cogwheel>)
