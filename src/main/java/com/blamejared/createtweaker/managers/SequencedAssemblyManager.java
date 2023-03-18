@@ -54,7 +54,7 @@ public class SequencedAssemblyManager implements IRecipeManager<SequencedAssembl
      * rb.addStep<mods.createtweaker.CuttingRecipe>((rb1) => rb1.duration(50));
      * rb.addStep<mods.createtweaker.PressingRecipe>((rb1) => rb1.duration(500));
      * rb.addStep<mods.createtweaker.DeployerApplicationRecipe>((rb1) => rb1.require(<item:minecraft:dirt>));
-     * rb.addStep<mods.createtweaker.FillingRecipe>((rb1) => rb.require(<fluid:minecraft:water> * 50))
+     * rb.addStep<mods.createtweaker.FillingRecipe>((rb1) => rb1.require(<fluid:minecraft:water> * 50))
      * }
      */
     @ZenCodeType.Method
