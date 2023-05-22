@@ -9,8 +9,8 @@ import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweaker;
 import com.mojang.datafixers.util.Either;
-import com.simibubi.create.content.contraptions.components.mixer.CompactingRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
+import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.Locale;

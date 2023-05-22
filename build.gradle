@@ -106,24 +106,28 @@ repositories {
         url "https://maven.blamejared.com"
     }
     maven {
-        url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
         url "https://maven.tterrag.com"
     }
     maven {
         url "https://maven.theillusivec4.top/"
+    }
+    maven {
+        name = "squiddev"
+        url = "https://squiddev.cc/maven/"
+        content {
+            includeGroup "org.squiddev"
+        }
     }
 }
 
 dependencies {
     def ctDep = 'com.blamejared.crafttweaker:CraftTweaker-forge-1.19.2:10.0.25'
     // Not actually sure if this even works, or if it is even required.
-    def mcDep = 'net.minecraftforge:forge:1.19.2-43.2.3'
+    def mcDep = 'net.minecraftforge:forge:1.19.2-43.2.11'
 
     minecraft mcDep
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.8-13")
-    implementation fg.deobf("com.simibubi.create:create-1.19.2:0.5.0.g-19:all")
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.8.a-14")
+    implementation fg.deobf("com.simibubi.create:create-1.19.2:0.5.1.a-29:all")
     compileOnly(ctDep)
     runtimeOnly(fg.deobf(ctDep))
     runtimeOnly(fg.deobf("mezz.jei:jei-1.19.2-forge:11.3.0.262"))

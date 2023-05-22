@@ -2,7 +2,7 @@ package com.blamejared.createtweaker.recipe.replacement;
 
 import com.blamejared.crafttweaker.api.recipe.component.IRecipeComponent;
 import com.google.gson.reflect.TypeToken;
-import com.simibubi.create.content.contraptions.processing.HeatCondition;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Objects;
