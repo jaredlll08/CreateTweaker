@@ -9,10 +9,10 @@ import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistration;
 import com.blamejared.createtweaker.CreateTweaker;
-import com.simibubi.create.content.contraptions.processing.HeatCondition;
-import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
-import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.HeatCondition;
+import com.simibubi.create.content.processing.recipe.ProcessingOutput;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -21,6 +21,7 @@ import org.openzen.zencode.java.ZenCodeType;
 
 import java.util.Arrays;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 @ZenRegister
 @Document("mods/createtweaker/recipe/ProcessingRecipeBuilder")
 @NativeTypeRegistration(value = ProcessingRecipeBuilder.class, zenCodeName = "mods.createtweaker.ProcessingRecipeBuilder")

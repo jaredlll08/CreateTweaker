@@ -7,7 +7,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.IReplacementRule;
 import com.blamejared.crafttweaker.api.recipe.handler.helper.ReplacementHandlerHelper;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.StringUtil;
-import com.simibubi.create.content.contraptions.components.crafter.MechanicalCraftingRecipe;
+import com.simibubi.create.content.kinetics.crafter.MechanicalCraftingRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
