@@ -9,6 +9,6 @@ object Properties {
     const val CURSE_PROJECT_ID = "437717"
     const val CURSE_HOMEPAGE = "https://www.curseforge.com/minecraft/mc-mods/createtweaker"
     const val MODRINTH_PROJECT_ID = "vEila6nl"
-    const val FIRST_COMMIT = "09445356925419c0111b0553a70f272a601f8bd5"
+    const val FIRST_COMMIT = "28edf9a71ccf421806a57a50fea868f30e4c4144"
     const val GIT_REPO = "https://github.com/jaredlll08/createtweaker"
 }
