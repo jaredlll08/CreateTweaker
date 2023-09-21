@@ -9,7 +9,7 @@ import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.crafttweaker_annotations.annotations.Document;
 import com.blamejared.createtweaker.recipe.manager.base.IProcessingRecipeManager;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.kinetics.fan.HauntingRecipe;
+import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;

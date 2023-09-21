@@ -24,8 +24,10 @@ val creates = files(crossroad.merge(
 
 dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
-    compileOnly("com.blamejared.crafttweaker:CraftTweaker-common-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}")
+    val crt = "com.blamejared.crafttweaker:CraftTweaker-common-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"
+    compileOnly(crt)
     annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
+    annotationProcessor(crt)
 
     // Thank you Quat, very cool!
     compileOnly(creates)

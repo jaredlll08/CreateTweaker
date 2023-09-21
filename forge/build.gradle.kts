@@ -38,13 +38,17 @@ minecraft {
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:${Versions.MINECRAFT}-${Versions.FORGE}")
+    val mc = create("net.minecraftforge:forge:${Versions.MINECRAFT}-${Versions.FORGE}")
+    "minecraft"(mc)
     implementation(project(":common"))
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    implementation(fg.deobf("com.blamejared.crafttweaker:CraftTweaker-forge-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"))
+    val crt = "com.blamejared.crafttweaker:CraftTweaker-forge-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"
+    implementation(fg.deobf(crt))
     implementation(fg.deobf("com.jozufozu.flywheel:flywheel-forge-${Versions.MINECRAFT}:${Versions.FLYWHEEL_FORGE}"))
     implementation(fg.deobf("com.simibubi.create:create-${Versions.MINECRAFT}:${Versions.CREATE_FORGE}:all"))
     annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
+    annotationProcessor(crt)
+    annotationProcessor(mc)
 }
 
 tasks.create<TaskPublishCurseForge>("publishCurseForge") {

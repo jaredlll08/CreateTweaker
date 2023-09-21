@@ -17,12 +17,14 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${Versions.FABRIC_LOADER}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${Versions.FABRIC}")
     implementation(project(":common"))
-    modImplementation("com.blamejared.crafttweaker:CraftTweaker-fabric-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}")
+    val crt = "com.blamejared.crafttweaker:CraftTweaker-fabric-${Versions.MINECRAFT}:${Versions.CRAFTTWEAKER}"
+    modImplementation(crt)
     modImplementation("com.faux.fauxcustomentitydata:FauxCustomEntityData-fabric-${Versions.MINECRAFT}:${Versions.FAUX_CUSTOM_ENTITY_DATA}")
     modImplementation("com.jozufozu.flywheel:flywheel-fabric-${Versions.MINECRAFT}:${Versions.FLYWHEEL_FABRIC}")
     modImplementation("com.simibubi.create:create-fabric-${Versions.MINECRAFT}:${Versions.CREATE_FABRIC}")
     modLocalRuntime("mezz.jei:jei-${Versions.MINECRAFT}-fabric:${Versions.JEI}")
-    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
+//    annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
+//    annotationProcessor(crt)
 }
 
 loom {
