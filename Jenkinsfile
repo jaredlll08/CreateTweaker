@@ -31,6 +31,7 @@ pipeline {
                 echo 'Cleaning Project'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean'
+                sh "rm -rf $docsOutDir"
             }
         }
         stage('Build') {
