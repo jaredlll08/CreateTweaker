@@ -10,7 +10,7 @@ object Versions {
     const val CRAFTTWEAKER = "14.0.16"
     const val CRAFTTWEAKER_ANNOTATION_PROCESSOR = "3.0.0.15"
     const val FAUX_CUSTOM_ENTITY_DATA = "6.0.1"
-    const val CREATE_FORGE = "0.5.1.e-16"
+    const val CREATE_FORGE = "0.5.1.e-22"
     const val FLYWHEEL_FORGE = "0.6.10-7"
     const val FLYWHEEL_FABRIC = "0.6.9-1"
 
