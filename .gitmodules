@@ -1,0 +1,4 @@
+[submodule "crossroad"]
+	path = crossroad
+	url = https://github.com/jaredlll08/crossroad.git
+	branch = trunk

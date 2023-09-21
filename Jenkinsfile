@@ -7,22 +7,24 @@ def botUsername = 'crafttweakerbot'
 def botEmail = 'crafttweakerbot@gmail.com'
 
 def documentationDir = 'CrafttweakerDocumentation'
-def exportDirInRepo = 'docs_exported/1.19/createtweaker'
+def exportDirInRepo = 'docs_exported/1.20.1/createtweaker'
 
 def docCommitMessage = { -> "CI doc export for CreateTweaker build ${env.BUILD_NUMBER}\n\nMatches git commit ${env.GIT_COMMIT} on branch ${env.BRANCH_NAME}" }
 
-def branchName = "1.19.2";
+def branchName = "1.20.1"
 
 pipeline {
     agent any
     tools {
         jdk "jdk-17.0.1"
     }
-
     environment {
-        ORG_GRADLE_PROJECT_secretFile = credentials('mod_build_secrets')
+        modrinth_token = credentials('modrinth_token')
+        curseforgeApiToken = credentials('curseforge_token')
+        discordCFWebhook = credentials('discord_cf_webhook')
+        versionTrackerKey = credentials('version_tracker_key')
+        versionTrackerAPI = credentials('version_tracker_api')
     }
-
     stages {
         stage('Clean') {
             steps {
@@ -35,11 +37,6 @@ pipeline {
             steps {
                 echo 'Building'
                 sh './gradlew build'
-            }
-        }
-        stage('Git Changelog') {
-            steps {
-                sh './gradlew genGitChangelog'
             }
         }
 
@@ -63,7 +60,7 @@ pipeline {
                 stage('Deploying to CurseForge') {
                     steps {
                         echo 'Deploying to CurseForge'
-                        sh './gradlew curseforge'
+                        sh './gradlew publishCurseForge modrinth postDiscord'
                     }
                 }
                 stage('Exporting Documentation') {
@@ -111,11 +108,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-    post {
-        always {
-            archive 'build/libs/**.jar'
         }
     }
     options {

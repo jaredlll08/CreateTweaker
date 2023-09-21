@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "createtweaker",
+  "name": "CreateTweaker",
+  "version": "${version}",
+  "environment": "*",
+  "icon": "assets/createtweaker/icon.png",
+  "authors": [
+    "Jaredlll08"
+  ],
+  "license": "MIT",
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/createtweaker",
+    "sources": "https://github.com/jaredlll08/createtweaker"
+  },
+  "description": "Adds CraftTweaker support to Create",
+  "entrypoints": {
+  },
+  "depends": {
+    "fabricloader": ">=0.14",
+    "java": ">=17",
+    "minecraft": "1.20.1",
+    "crafttweaker": ">=14.0.16",
+    "create": ">=0.5.1-d-build.1161+mc1.20.1"
+  },
+  "recommends": {
+    "fabric": "*"
+  },
+  "mixins": [
+    {
+      "config": "createtweaker.mixins.json",
+      "environment": "*"
+    },
+    {
+      "config": "createtweaker.fabric.mixins.json",
+      "environment": "*"
+    }
+  ]
+}
