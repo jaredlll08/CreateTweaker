@@ -14,7 +14,7 @@ Adds CraftTweaker support to Create
 [[dependencies.createtweaker]]
 modId = "create"
 mandatory = true
-versionRange = "[0.5.1,)"
+versionRange = "[0.5.1.e,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.createtweaker]]
