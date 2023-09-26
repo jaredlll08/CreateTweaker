@@ -117,8 +117,8 @@ dependencies {
     def mcDep = 'net.minecraftforge:forge:1.18.2-40.2.4'
 
     minecraft mcDep
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:0.6.8.a-99")
-    implementation fg.deobf("com.simibubi.create:create-1.18.2:0.5.1.a-279:all")
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:0.6.10-105")
+    implementation fg.deobf("com.simibubi.create:create-1.18.2:0.5.1.e-318:all")
     compileOnly(ctDep)
     runtimeOnly(fg.deobf(ctDep))
     implementation fg.deobf("mezz.jei:jei-1.18.2:9.5.2.133")
