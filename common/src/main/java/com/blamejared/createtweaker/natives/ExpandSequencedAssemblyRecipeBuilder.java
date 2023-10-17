@@ -17,7 +17,7 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/SequencedAssemblyRecipeBuilder")
+@Document("mods/CreateTweaker/recipe/SequencedAssemblyRecipeBuilder")
 @NativeTypeRegistration(value = SequencedAssemblyRecipeBuilder.class, zenCodeName = "mods.createtweaker.SequencedAssemblyRecipeBuilder")
 public class ExpandSequencedAssemblyRecipeBuilder {
     

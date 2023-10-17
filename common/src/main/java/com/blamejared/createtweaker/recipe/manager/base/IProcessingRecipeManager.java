@@ -20,7 +20,7 @@ import java.util.function.Consumer;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.IProcessingRecipeManager")
-@Document("mods/createtweaker/IProcessingRecipeManager")
+@Document("mods/CreateTweaker/IProcessingRecipeManager")
 public interface IProcessingRecipeManager<T extends ProcessingRecipe<?>> extends IRecipeManager<T> {
     
     default ProcessingRecipeSerializer<T> getSerializer() {

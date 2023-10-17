@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.SplashingManager")
-@Document("mods/createtweaker/SplashingManager")
+@Document("mods/CreateTweaker/SplashingManager")
 public class SplashingManager implements IProcessingRecipeManager<SplashingRecipe> {
     
     /**

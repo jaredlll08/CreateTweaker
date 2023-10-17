@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/ProcessingRecipeFactory")
+@Document("mods/CreateTweaker/recipe/ProcessingRecipeFactory")
 @NativeTypeRegistration(value = ProcessingRecipeBuilder.ProcessingRecipeFactory.class, zenCodeName = "mods.createtweaker.ProcessingRecipeFactory")
 public class ExpandProcessingRecipeFactory {
 

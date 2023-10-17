@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 @ZenRegister
-@Document("mods/createtweaker/recipe/ProcessingRecipeBuilder")
+@Document("mods/CreateTweaker/recipe/ProcessingRecipeBuilder")
 @NativeTypeRegistration(value = ProcessingRecipeBuilder.class, zenCodeName = "mods.createtweaker.ProcessingRecipeBuilder")
 public class ExpandProcessingRecipeBuilder {
     

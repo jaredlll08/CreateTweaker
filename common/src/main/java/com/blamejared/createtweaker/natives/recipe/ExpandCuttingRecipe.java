@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/CuttingRecipe")
+@Document("mods/CreateTweaker/recipe/type/CuttingRecipe")
 @NativeTypeRegistration(value = CuttingRecipe.class, zenCodeName = "mods.createtweaker.CuttingRecipe")
 public class ExpandCuttingRecipe {
 

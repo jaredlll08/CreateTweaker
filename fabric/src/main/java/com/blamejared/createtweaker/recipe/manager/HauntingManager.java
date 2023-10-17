@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.HauntingManager")
-@Document("mods/createtweaker/HauntingManager")
+@Document("mods/CreateTweaker/HauntingManager")
 public class HauntingManager implements IProcessingRecipeManager<HauntingRecipe> {
     
     /**

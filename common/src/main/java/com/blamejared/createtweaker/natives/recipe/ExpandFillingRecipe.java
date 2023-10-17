@@ -8,7 +8,7 @@ import com.simibubi.create.foundation.fluid.FluidIngredient;
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/FillingRecipe")
+@Document("mods/CreateTweaker/recipe/type/FillingRecipe")
 @NativeTypeRegistration(value = FillingRecipe.class, zenCodeName = "mods.createtweaker.FillingRecipe")
 public class ExpandFillingRecipe {
     

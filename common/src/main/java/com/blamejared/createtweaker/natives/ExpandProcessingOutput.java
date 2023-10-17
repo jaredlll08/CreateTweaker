@@ -8,7 +8,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/ProcessingOutput")
+@Document("mods/CreateTweaker/ProcessingOutput")
 @NativeTypeRegistration(value = ProcessingOutput.class, zenCodeName = "mods.createtweaker.ProcessingOutput")
 public class ExpandProcessingOutput {
     

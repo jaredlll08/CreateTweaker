@@ -11,7 +11,7 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.List;
 
 @ZenRegister
-@Document("mods/createtweaker/FluidIngredient")
+@Document("mods/CreateTweaker/FluidIngredient")
 @NativeTypeRegistration(value = FluidIngredient.class, zenCodeName = "mods.createtweaker.FluidIngredient")
 public class ExpandFluidIngredient {
     

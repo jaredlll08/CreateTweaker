@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/ProcessingRecipe")
+@Document("mods/CreateTweaker/recipe/type/ProcessingRecipe")
 @NativeTypeRegistration(value = ProcessingRecipe.class, zenCodeName = "mods.createtweaker.ProcessingRecipe")
 public class ExpandProcessingRecipe {
     

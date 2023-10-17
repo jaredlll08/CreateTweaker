@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/MixingRecipe")
+@Document("mods/CreateTweaker/recipe/type/MixingRecipe")
 @NativeTypeRegistration(value = MixingRecipe.class, zenCodeName = "mods.createtweaker.MixingRecipe")
 public class ExpandMixingRecipe {
 

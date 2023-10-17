@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.CrushingManager")
-@Document("mods/createtweaker/CrushingManager")
+@Document("mods/CreateTweaker/CrushingManager")
 public class CrushingManager implements IProcessingRecipeManager<CrushingRecipe> {
     
     /**

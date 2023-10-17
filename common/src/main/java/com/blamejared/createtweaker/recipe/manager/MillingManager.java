@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MillingManager")
-@Document("mods/createtweaker/MillingManager")
+@Document("mods/CreateTweaker/MillingManager")
 public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
     
     /**
