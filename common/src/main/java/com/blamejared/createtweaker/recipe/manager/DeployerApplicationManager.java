@@ -15,7 +15,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:deploying>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.DeployerApplicationManager")
+@ZenCodeType.Name("mods.createtweaker.DeployerApplicationManager")
 @Document("mods/CreateTweaker/DeployerApplicationManager")
 public class DeployerApplicationManager implements IProcessingRecipeManager<DeployerApplicationRecipe> {
     

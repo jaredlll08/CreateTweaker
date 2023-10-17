@@ -21,7 +21,7 @@ import java.util.Arrays;
  * @docParam this <recipetype:create:crushing>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.CrushingManager")
+@ZenCodeType.Name("mods.createtweaker.CrushingManager")
 @Document("mods/CreateTweaker/CrushingManager")
 public class CrushingManager implements IProcessingRecipeManager<CrushingRecipe> {
     

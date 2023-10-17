@@ -18,7 +18,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:cutting>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.CuttingManager")
+@ZenCodeType.Name("mods.createtweaker.CuttingManager")
 @Document("mods/CreateTweaker/CuttingManager")
 public class CuttingManager implements IProcessingRecipeManager<CuttingRecipe> {
     

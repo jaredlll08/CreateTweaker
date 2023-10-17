@@ -22,7 +22,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:filling>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.FillingManager")
+@ZenCodeType.Name("mods.createtweaker.FillingManager")
 @Document("mods/CreateTweaker/FillingManager")
 public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
     

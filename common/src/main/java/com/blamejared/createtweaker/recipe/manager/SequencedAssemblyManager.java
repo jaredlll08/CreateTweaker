@@ -20,7 +20,7 @@ import java.util.function.Consumer;
  * @docParam this <recipetype:create:sequenced_assembly>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.SequencedAssemblyManager")
+@ZenCodeType.Name("mods.createtweaker.SequencedAssemblyManager")
 @Document("mods/CreateTweaker/SequencedAssemblyManager")
 public class SequencedAssemblyManager implements IRecipeManager<SequencedAssemblyRecipe> {
     
