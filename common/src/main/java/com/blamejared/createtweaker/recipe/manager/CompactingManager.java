@@ -31,7 +31,7 @@ import java.util.List;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.CompactingManager")
-@Document("mods/createtweaker/CompactingManager")
+@Document("mods/CreateTweaker/CompactingManager")
 public class CompactingManager implements IProcessingRecipeManager<CompactingRecipe> {
     
     @Deprecated(forRemoval = true)

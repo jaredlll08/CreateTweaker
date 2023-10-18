@@ -31,7 +31,7 @@ import java.util.List;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MixingManager")
-@Document("mods/createtweaker/MixingManager")
+@Document("mods/CreateTweaker/MixingManager")
 public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
     
     @Deprecated(forRemoval = true)

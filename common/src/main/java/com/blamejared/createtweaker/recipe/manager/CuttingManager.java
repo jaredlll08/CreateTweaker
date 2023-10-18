@@ -19,7 +19,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.CuttingManager")
-@Document("mods/createtweaker/CuttingManager")
+@Document("mods/CreateTweaker/CuttingManager")
 public class CuttingManager implements IProcessingRecipeManager<CuttingRecipe> {
     
     //TODO remove

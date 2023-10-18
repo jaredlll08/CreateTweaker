@@ -21,7 +21,7 @@ import java.util.function.Consumer;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.SequencedAssemblyManager")
-@Document("mods/createtweaker/SequencedAssemblyManager")
+@Document("mods/CreateTweaker/SequencedAssemblyManager")
 public class SequencedAssemblyManager implements IRecipeManager<SequencedAssemblyRecipe> {
     
     /**

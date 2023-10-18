@@ -23,7 +23,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.FillingManager")
-@Document("mods/createtweaker/FillingManager")
+@Document("mods/CreateTweaker/FillingManager")
 public class FillingManager implements IProcessingRecipeManager<FillingRecipe> {
     
     @Deprecated(forRemoval = true)

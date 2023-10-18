@@ -7,7 +7,7 @@ import com.simibubi.create.content.processing.sequenced.IAssemblyRecipe;
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/IAssemblyRecipe")
+@Document("mods/CreateTweaker/recipe/type/IAssemblyRecipe")
 @NativeTypeRegistration(value = IAssemblyRecipe.class, zenCodeName = "mods.createtweaker.IAssemblyRecipe")
 public class ExpandIAssemblyRecipe {
     

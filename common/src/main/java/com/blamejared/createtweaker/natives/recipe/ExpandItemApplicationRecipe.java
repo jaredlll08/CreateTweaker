@@ -8,7 +8,7 @@ import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe;
 import org.openzen.zencode.java.ZenCodeType;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/ItemApplicationRecipe")
+@Document("mods/CreateTweaker/recipe/type/ItemApplicationRecipe")
 @NativeTypeRegistration(value = ItemApplicationRecipe.class, zenCodeName = "mods.createtweaker.ItemApplicationRecipe")
 public class ExpandItemApplicationRecipe {
     

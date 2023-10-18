@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/DeployerApplicationRecipe")
+@Document("mods/CreateTweaker/recipe/type/DeployerApplicationRecipe")
 @NativeTypeRegistration(value = DeployerApplicationRecipe.class, zenCodeName = "mods.createtweaker.DeployerApplicationRecipe")
 public class ExpandDeployerApplicationRecipe {
 

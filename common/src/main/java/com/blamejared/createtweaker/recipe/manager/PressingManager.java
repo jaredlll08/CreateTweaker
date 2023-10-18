@@ -25,7 +25,7 @@ import java.util.List;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.PressingManager")
-@Document("mods/createtweaker/PressingManager")
+@Document("mods/CreateTweaker/PressingManager")
 public class PressingManager implements IProcessingRecipeManager<PressingRecipe> {
     
     /**

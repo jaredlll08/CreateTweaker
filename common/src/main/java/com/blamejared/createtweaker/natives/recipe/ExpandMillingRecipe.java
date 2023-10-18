@@ -6,7 +6,7 @@ import com.blamejared.crafttweaker_annotations.annotations.NativeTypeRegistratio
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 
 @ZenRegister
-@Document("mods/createtweaker/recipe/type/MillingRecipe")
+@Document("mods/CreateTweaker/recipe/type/MillingRecipe")
 @NativeTypeRegistration(value = MillingRecipe.class, zenCodeName = "mods.createtweaker.MillingRecipe")
 public class ExpandMillingRecipe {
 

@@ -20,7 +20,7 @@ import org.openzen.zencode.java.ZenCodeType;
  */
 @ZenRegister
 @ZenCodeType.Name("mods.create.MechanicalCrafterManager")
-@Document("mods/createtweaker/MechanicalCrafterManager")
+@Document("mods/CreateTweaker/MechanicalCrafterManager")
 public class MechanicalCrafterManager implements IRecipeManager<MechanicalCraftingRecipe> {
     
     /**
