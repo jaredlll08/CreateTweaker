@@ -199,5 +199,14 @@ public class ExpandProcessingRecipeBuilder {
         return Services.PLATFORM.output(internal, fluidStack);
     }
     
+    /**
+     * Sets the recipe to keep the tool.
+     *
+     * @return This builder for further chaining.
+     */
+    @ZenCodeType.Method
+    public static ProcessingRecipeBuilder<ProcessingRecipe<Container>> toolNotConsumed(ProcessingRecipeBuilder internal) {
+        return internal.toolNotConsumed();
+    }
     
 }
