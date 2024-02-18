@@ -1,17 +1,18 @@
 {
-  "required" : true,
-  "minVersion" : "0.8",
-  "package" : "com.blamejared.createtweaker.mixin",
-  "compatibilityLevel" : "JAVA_17",
-  "mixins" : [
-    "access.AccessFluidTagIngredient"
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.blamejared.createtweaker.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "access.AccessFluidTagIngredient",
+    "access.AccessProcessingRecipeBuilder"
   ],
-  "client" : [
+  "client": [
   ],
-  "server" : [
+  "server": [
   ],
-  "injectors" : {
-    "defaultRequire" : 1
+  "injectors": {
+    "defaultRequire": 1
   },
-  "refmap" : "createtweaker.refmap.json"
+  "refmap": "createtweaker.refmap.json"
 }
