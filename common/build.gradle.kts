@@ -1,4 +1,4 @@
-import com.blamejared.createtweaker.Remapper
+import com.blamejared.createtweaker.gradle.Remapper
 import com.blamejared.createtweaker.gradle.Versions
 import java.nio.file.Path
 

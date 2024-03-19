@@ -73,6 +73,15 @@ class DefaultPlugin : Plugin<Project> {
             this.add(this.maven("https://mvn.devos.one/snapshots") {
                 name = "devOSSnapshots"
             })
+            this.add(this.maven("https://mvn.devos.one/releases/") {
+                name = "devOSReleases"
+            })
+            this.add(this.maven("https://jitpack.io/"){
+                content {
+                    includeGroupAndSubgroups("com.github")
+                }
+            })
+            this.add(this.maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"))
             this.add(this.maven("https://maven.theillusivec4.top") {
                 name = "TIC4"
                 content {

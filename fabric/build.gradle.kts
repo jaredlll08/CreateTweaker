@@ -5,7 +5,7 @@ import net.darkhax.curseforgegradle.TaskPublishCurseForge
 import net.darkhax.curseforgegradle.Constants as CFG_Constants
 
 plugins {
-    id("fabric-loom") version "1.2-SNAPSHOT"
+    id("fabric-loom") version "1.5-SNAPSHOT"
     id("com.blamejared.createtweaker.default")
     id("com.blamejared.createtweaker.loader")
     id("com.modrinth.minotaur")

@@ -5,7 +5,7 @@ import com.blamejared.crafttweaker.api.recipe.handler.IRecipeHandler;
 import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
 import com.blamejared.crafttweaker.api.util.random.Percentaged;
 import com.blamejared.createtweaker.CreateTweakerHelper;
-import com.simibubi.create.content.kinetics.fan.SplashingRecipe;
+import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.world.item.crafting.Recipe;
 

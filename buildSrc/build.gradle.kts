@@ -16,8 +16,8 @@ dependencies {
     implementation(group = "net.darkhax.curseforgegradle", name = "CurseForgeGradle", version = "1.0.10")
     implementation(group = "com.modrinth.minotaur", name = "Minotaur", version = "2.+")
     implementation(group = "com.diluv.schoomp", name = "Schoomp", version = "1.2.6")
-    implementation(group = "net.fabricmc", name = "tiny-remapper", version = "0.8.9")
-    implementation(group = "net.fabricmc", name = "mapping-io", version = "0.4.2")
+    implementation(group = "net.fabricmc", name = "tiny-remapper", version = "0.10.0")
+    implementation(group = "net.fabricmc", name = "mapping-io", version = "0.5.1")
 }
 
 gradlePlugin {
