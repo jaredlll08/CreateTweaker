@@ -21,7 +21,7 @@ import java.util.Arrays;
  * @docParam this <recipetype:create:milling>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.MillingManager")
+@ZenCodeType.Name("mods.createtweaker.MillingManager")
 @Document("mods/CreateTweaker/MillingManager")
 public class MillingManager implements IProcessingRecipeManager<MillingRecipe> {
     

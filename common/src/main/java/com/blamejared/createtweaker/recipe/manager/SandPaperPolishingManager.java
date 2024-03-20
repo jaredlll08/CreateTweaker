@@ -18,7 +18,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:sandpaper_polishing>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.SandPaperPolishingManager")
+@ZenCodeType.Name("mods.createtweaker.SandPaperPolishingManager")
 @Document("mods/CreateTweaker/SandPaperPolishingManager")
 public class SandPaperPolishingManager implements IProcessingRecipeManager<SandPaperPolishingRecipe> {
     

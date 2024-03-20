@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * @docParam this <recipetype:create:compacting>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.IProcessingRecipeManager")
+@ZenCodeType.Name("mods.createtweaker.IProcessingRecipeManager")
 @Document("mods/CreateTweaker/IProcessingRecipeManager")
 public interface IProcessingRecipeManager<T extends ProcessingRecipe<?>> extends IRecipeManager<T> {
     

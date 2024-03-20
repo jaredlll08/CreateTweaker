@@ -30,7 +30,7 @@ import java.util.List;
  * @docParam this <recipetype:create:mixing>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.MixingManager")
+@ZenCodeType.Name("mods.createtweaker.MixingManager")
 @Document("mods/CreateTweaker/MixingManager")
 public class MixingManager implements IProcessingRecipeManager<MixingRecipe> {
     
