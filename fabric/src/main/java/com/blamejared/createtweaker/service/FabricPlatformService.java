@@ -128,6 +128,7 @@ public class FabricPlatformService implements PlatformService {
         }
         Optional<CTFluidIngredient> reduce = ingredient.getMatchingFluidStacks()
                 .stream()
+                .map(this::mapFStoSFS)
                 .map(IFluidStack::of)
                 .map(IFluidStack::asFluidIngredient)
                 .reduce(CTFluidIngredient::asCompound);

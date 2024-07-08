@@ -8,8 +8,7 @@ pluginManagement {
         maven("https://repo.spongepowered.org/repository/maven-public/") {
             name = "Sponge Snapshots"
         }
-        //TODO When Crossroad has inner class support, uncomment and remove the git module
-//        maven("https://repo.sleeping.town/") {}
+        maven("https://repo.sleeping.town/") { name = "minivan"  }
     }
 }
 plugins {

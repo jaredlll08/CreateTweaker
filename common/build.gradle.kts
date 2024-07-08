@@ -4,12 +4,12 @@ import java.nio.file.Path
 
 plugins {
     java
-    id("org.spongepowered.gradle.vanilla") version "0.2.1-SNAPSHOT"
+    id ("agency.highlysuspect.minivan") version "0.5"
     id("com.blamejared.createtweaker.default")
     id("agency.highlysuspect.crossroad") version "0.3"
 }
 
-minecraft {
+minivan {
     version(Versions.MINECRAFT)
 }
 
