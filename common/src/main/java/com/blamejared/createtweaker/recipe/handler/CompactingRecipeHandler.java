@@ -27,7 +27,7 @@ public class CompactingRecipeHandler implements IProcessingRecipeHandler<Compact
         Either<Stream<Percentaged<IItemStack>>, IFluidStack> result;
         List<IFluidStack> fluidResults = Services.PLATFORM.getRecipeFluidResults(recipe);
         if(!fluidResults.isEmpty()) {
-            result = Either.right(IFluidStack.of(fluidResults.get(0)));
+            result = Either.right(fluidResults.get(0));
         } else {
             result = Either.left(recipe.getRollableResults()
                     .stream()
@@ -47,7 +47,6 @@ public class CompactingRecipeHandler implements IProcessingRecipeHandler<Compact
                         .collect(Collectors.joining(", ")),
                 Services.PLATFORM.getRecipeFluidResults(recipe)
                         .stream()
-                        .map(IFluidStack::of)
                         .map(IFluidStack::getCommandString)
                         .collect(Collectors.joining(", "))
         );
