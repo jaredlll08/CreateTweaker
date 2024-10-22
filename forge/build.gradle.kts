@@ -49,6 +49,7 @@ dependencies {
     annotationProcessor("com.blamejared.crafttweaker:Crafttweaker_Annotation_Processors:${Versions.CRAFTTWEAKER_ANNOTATION_PROCESSOR}")
     annotationProcessor(crt)
     annotationProcessor(mc)
+    implementation(fg.deobf("mezz.jei:jei-${Versions.MINECRAFT}-forge:${Versions.JEI}"))
 }
 
 tasks.create<TaskPublishCurseForge>("publishCurseForge") {

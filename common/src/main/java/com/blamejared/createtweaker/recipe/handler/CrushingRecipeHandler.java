@@ -46,10 +46,4 @@ public class CrushingRecipeHandler implements IProcessingRecipeHandler<CrushingR
         return CrushingRecipe::new;
     }
     
-    @Override
-    public Optional<CrushingRecipe> recompose(IRecipeManager<? super CrushingRecipe> manager, ResourceLocation name, IDecomposedRecipe recipe) {
-        
-        return Optional.empty();
-    }
-    
 }
