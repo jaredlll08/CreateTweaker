@@ -8,7 +8,7 @@ object Versions {
     const val FABRIC_LOADER = "0.15.7"
     const val FABRIC = "0.92.0+1.20.1"
     const val CRAFTTWEAKER = "14.0.16"
-    const val CRAFTTWEAKER_ANNOTATION_PROCESSOR = "3.0.0.15"
+    const val CRAFTTWEAKER_ANNOTATION_PROCESSOR = "4.0.0.19"
     const val FAUX_CUSTOM_ENTITY_DATA = "6.0.1"
     const val CREATE_FORGE = "0.5.1.f-26"
     const val FLYWHEEL_FORGE = "0.6.10-8"
