@@ -30,7 +30,7 @@ import java.util.List;
  * @docParam this <recipetype:create:compacting>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.CompactingManager")
+@ZenCodeType.Name("mods.createtweaker.CompactingManager")
 @Document("mods/CreateTweaker/CompactingManager")
 public class CompactingManager implements IProcessingRecipeManager<CompactingRecipe> {
     

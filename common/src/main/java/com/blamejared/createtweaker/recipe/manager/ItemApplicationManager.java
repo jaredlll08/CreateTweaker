@@ -15,7 +15,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:item_application>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.ItemApplicationManager")
+@ZenCodeType.Name("mods.createtweaker.ItemApplicationManager")
 @Document("mods/CreateTweaker/ItemApplicationManager")
 public class ItemApplicationManager implements IProcessingRecipeManager<ItemApplicationRecipe> {
     

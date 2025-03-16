@@ -24,7 +24,7 @@ import java.util.List;
  * @docParam this <recipetype:create:emptying>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.EmptyingManager")
+@ZenCodeType.Name("mods.createtweaker.EmptyingManager")
 @Document("mods/CreateTweaker/EmptyingManager")
 public class EmptyingManager implements IProcessingRecipeManager<EmptyingRecipe> {
     

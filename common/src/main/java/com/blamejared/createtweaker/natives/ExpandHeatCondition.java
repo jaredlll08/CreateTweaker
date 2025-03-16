@@ -10,7 +10,7 @@ import org.openzen.zencode.java.ZenCodeType;
 import java.util.Locale;
 
 @ZenRegister
-@NativeTypeRegistration(value = HeatCondition.class, zenCodeName = "mods.create.HeatCondition")
+@NativeTypeRegistration(value = HeatCondition.class, zenCodeName = "mods.createtweaker.HeatCondition")
 @Document("mods/CreateTweaker/recipe/HeatCondition")
 @BracketEnum("create:heat_condition")
 public class ExpandHeatCondition {

@@ -19,7 +19,7 @@ import org.openzen.zencode.java.ZenCodeType;
  * @docParam this <recipetype:create:mechanical_crafting>
  */
 @ZenRegister
-@ZenCodeType.Name("mods.create.MechanicalCrafterManager")
+@ZenCodeType.Name("mods.createtweaker.MechanicalCrafterManager")
 @Document("mods/CreateTweaker/MechanicalCrafterManager")
 public class MechanicalCrafterManager implements IRecipeManager<MechanicalCraftingRecipe> {
     
